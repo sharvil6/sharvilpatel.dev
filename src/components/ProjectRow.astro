@@ -1,0 +1,95 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import TagList from './TagList.astro';
+import { formatYear } from '../lib/format';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  index: number;
+}
+
+const { project, index } = Astro.props;
+const { title, summary, date, tech } = project.data;
+---
+
+<article class="row">
+  <a href={`/projects/${project.id}`} class="row-link">
+    <span class="index mono-label" aria-hidden="true">{String(index).padStart(2, '0')}</span>
+    <span class="body">
+      <span class="title">{title}</span>
+      <span class="summary">{summary}</span>
+    </span>
+    <span class="year mono-label">{formatYear(date)}</span>
+  </a>
+  <div class="tags-row">
+    <TagList tags={tech} />
+  </div>
+</article>
+
+<style>
+  .row {
+    border-bottom: var(--hairline);
+    position: relative;
+  }
+
+  .row-link {
+    display: grid;
+    grid-template-columns: 4ch 1fr auto;
+    gap: var(--s3);
+    align-items: baseline;
+    padding: var(--s3) var(--s2);
+    text-decoration: none;
+  }
+
+  /* brutalist inversion hover — zero JS */
+  .row-link:hover,
+  .row-link:focus-visible {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .index {
+    color: var(--accent);
+  }
+
+  .row-link:hover .index,
+  .row-link:focus-visible .index {
+    color: var(--paper);
+  }
+
+  .body {
+    display: block;
+  }
+
+  .title {
+    display: block;
+    font-size: var(--text-lg);
+    font-weight: 750;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+
+  .summary {
+    display: block;
+    margin-block-start: var(--s1);
+    max-width: var(--measure);
+  }
+
+  .tags-row {
+    padding: 0 var(--s2) var(--s3) calc(4ch + var(--s3) + var(--s2));
+  }
+
+  @media (max-width: 45rem) {
+    .row-link {
+      grid-template-columns: 4ch 1fr;
+    }
+
+    .year {
+      grid-column: 2;
+    }
+
+    .tags-row {
+      padding-inline-start: var(--s2);
+    }
+  }
+</style>

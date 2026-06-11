@@ -1,0 +1,64 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { formatDate, isoDate } from '../../lib/format';
+
+export async function getStaticPaths() {
+  const showDrafts = import.meta.env.DEV;
+  const posts = await getCollection('blog', ({ data }) => showDrafts || !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { title, description, pubDate, tags } = post.data;
+---
+
+<BaseLayout title={title} description={description} ogType="article">
+  <article class="pad">
+    <header class="post-header">
+      <p class="mono-label meta">
+        <a href="/blog">Writing</a> /
+        <time datetime={isoDate(pubDate)}>{formatDate(pubDate)}</time>
+        {tags.length > 0 && <span> / {tags.join(', ')}</span>}
+      </p>
+      <h1>{title}</h1>
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .post-header {
+    padding-block: var(--s8) var(--s4);
+    border-bottom: var(--border);
+  }
+
+  .meta {
+    color: var(--accent);
+    margin-block-end: var(--s2);
+  }
+
+  .meta a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .meta a:hover {
+    color: var(--accent);
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+    max-width: 24ch;
+  }
+
+  .prose {
+    padding-block: var(--s6) var(--s12);
+  }
+</style>

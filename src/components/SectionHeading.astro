@@ -1,0 +1,40 @@
+---
+interface Props {
+  index: string;
+  title: string;
+  count?: number;
+}
+
+const { index, title, count } = Astro.props;
+---
+
+<div class="section-heading">
+  <h2 class="mono-label">
+    <span class="index" aria-hidden="true">{index}&nbsp;/</span>
+    {title}
+  </h2>
+  {count !== undefined && <span class="mono-label count">{String(count).padStart(2, '0')} {count === 1 ? 'item' : 'items'}</span>}
+</div>
+
+<style>
+  .section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--s2);
+    margin-block-end: var(--s4);
+  }
+
+  h2 {
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .index {
+    color: var(--accent);
+  }
+
+  .count {
+    color: var(--ink);
+  }
+</style>

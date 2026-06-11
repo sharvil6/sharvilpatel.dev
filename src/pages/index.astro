@@ -1,0 +1,101 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ProjectRow from '../components/ProjectRow.astro';
+
+const showDrafts = import.meta.env.DEV;
+const featured = (await getCollection('projects', ({ data }) => data.featured && (showDrafts || !data.draft)))
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Sharvil Patel"
+  titleOverride="Sharvil Patel · Software Engineer"
+  description="Software engineer. Project writeups, resume, and occasional articles on building systems."
+>
+  <section class="hero pad">
+    <h1 class="display">Sharvil<br />Patel</h1>
+    <p class="positioning">
+      Software engineer building reliable systems and the tooling around them.
+    </p>
+    <ul class="contact mono-label">
+      <li><a href="mailto:sharvilpatel95@gmail.com">sharvilpatel95@gmail.com</a></li>
+      <li><a href="https://github.com/sharvilpatel">github.com/sharvilpatel</a></li>
+      <li>United States</li>
+    </ul>
+  </section>
+
+  <section class="section pad">
+    <SectionHeading index="01" title="Selected work" count={featured.length} />
+    <div class="work">
+      {featured.map((project, i) => <ProjectRow project={project} index={i + 1} />)}
+    </div>
+    <p class="all-link"><a href="/projects" class="mono-label">All projects &rarr;</a></p>
+  </section>
+
+  <section class="section pad">
+    <SectionHeading index="02" title="About" />
+    <div class="prose">
+      <p>
+        I'm a software engineer who likes problems where correctness and performance both matter:
+        data pipelines, developer tooling, and the unglamorous infrastructure that keeps products
+        honest. I write up the interesting ones here.
+      </p>
+      <p>
+        Currently open to new roles. The fastest way to evaluate me is the
+        <a href="/projects">project writeups</a> or the <a href="/resume">resume</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section pad">
+    <SectionHeading index="03" title="Contact" />
+    <p class="contact-big">
+      <a href="mailto:sharvilpatel95@gmail.com">sharvilpatel95@gmail.com</a>
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-block: var(--s12) var(--s8);
+  }
+
+  .hero h1 {
+    border-bottom: 6px solid var(--accent);
+    padding-block-end: var(--s3);
+    margin-block-end: var(--s3);
+  }
+
+  .positioning {
+    font-size: var(--text-lg);
+    max-width: 34ch;
+    text-wrap: balance;
+  }
+
+  .contact {
+    list-style: none;
+    padding: 0;
+    margin-block-start: var(--s4);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s1) var(--s4);
+  }
+
+  .work {
+    border-top: var(--hairline);
+  }
+
+  .all-link {
+    margin-block-start: var(--s3);
+    text-align: right;
+  }
+
+  .contact-big {
+    font-size: var(--text-xl);
+    font-weight: 750;
+    letter-spacing: -0.01em;
+    overflow-wrap: anywhere;
+  }
+</style>

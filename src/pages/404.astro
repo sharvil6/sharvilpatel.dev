@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="404" description="Page not found.">
+  <section class="lost pad">
+    <p class="display" role="presentation">404</p>
+    <p class="mono-label">Nothing at this address. <a href="/">Return to index &rarr;</a></p>
+  </section>
+</BaseLayout>
+
+<style>
+  .lost {
+    padding-block: var(--s12);
+  }
+
+  .display {
+    color: var(--accent);
+  }
+
+  .mono-label {
+    margin-block-start: var(--s3);
+  }
+</style>

@@ -1,0 +1,112 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MetaRow from '../../components/MetaRow.astro';
+import { formatDate } from '../../lib/format';
+
+export async function getStaticPaths() {
+  const showDrafts = import.meta.env.DEV;
+  const projects = (await getCollection('projects', ({ data }) => showDrafts || !data.draft))
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+  return projects.map((project, i) => ({
+    params: { slug: project.id },
+    props: {
+      project,
+      prev: projects[i + 1] ?? null,
+      next: projects[i - 1] ?? null,
+    },
+  }));
+}
+
+const { project, prev, next } = Astro.props;
+const { Content } = await render(project);
+const { title, summary, date, tech, role, repo, demo } = project.data;
+
+const meta = [
+  { label: 'Date', value: formatDate(date) },
+  ...(role ? [{ label: 'Role', value: role }] : []),
+  { label: 'Stack', value: tech.join(' / ') },
+  ...(repo ? [{ label: 'Source', value: repo.replace('https://', ''), href: repo }] : []),
+  ...(demo ? [{ label: 'Demo', value: demo.replace('https://', ''), href: demo }] : []),
+];
+---
+
+<BaseLayout title={title} description={summary} ogType="article">
+  <article class="pad">
+    <header class="project-header">
+      <p class="mono-label crumb"><a href="/projects">Projects</a> /</p>
+      <h1>{title}</h1>
+      <p class="summary">{summary}</p>
+    </header>
+    <MetaRow items={meta} />
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+
+  <nav class="pagination mono-label pad" aria-label="Project navigation">
+    <span>
+      {prev && (
+        <a href={`/projects/${prev.id}`} rel="prev">&larr; {prev.data.title}</a>
+      )}
+    </span>
+    <span>
+      {next && (
+        <a href={`/projects/${next.id}`} rel="next">{next.data.title} &rarr;</a>
+      )}
+    </span>
+  </nav>
+</BaseLayout>
+
+<style>
+  .project-header {
+    padding-block: var(--s8) var(--s4);
+  }
+
+  .crumb {
+    color: var(--accent);
+    margin-block-end: var(--s2);
+  }
+
+  .crumb a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .crumb a:hover {
+    color: var(--accent);
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+  }
+
+  .summary {
+    margin-block-start: var(--s2);
+    font-size: var(--text-lg);
+    max-width: var(--measure);
+    text-wrap: balance;
+  }
+
+  .prose {
+    padding-block: var(--s6) var(--s12);
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--s3);
+    border-top: var(--border);
+    padding-block: var(--s3);
+  }
+
+  .pagination a {
+    text-decoration: none;
+  }
+
+  .pagination a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
+</style>

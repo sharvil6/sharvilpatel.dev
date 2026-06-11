@@ -1,0 +1,291 @@
+/* ============================================================
+   sharvilpatel.dev — design system
+   Swiss / brutalist-lite: visible structure, ruled sections,
+   bold tight sans display, mono metadata, one signal accent.
+   Zero client-side JS; the CSS does all the work.
+   ============================================================ */
+
+/* ---------- tokens ---------- */
+
+:root {
+  /* color — warm-tinted neutrals, never pure black/white */
+  --ink: oklch(15% 0.005 80);
+  --paper: oklch(98% 0.006 90);
+  --accent: oklch(62% 0.22 33); /* signal orange, Swiss poster energy */
+  --rule: var(--ink);
+
+  /* type */
+  --font-sans: "Helvetica Neue", Helvetica, Arial, "Segoe UI", system-ui, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "SF Mono", Consolas, "Segoe UI Mono", monospace;
+
+  /* modular scale ~1.25, fluid display */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.3125rem;
+  --text-xl: 1.625rem;
+  --text-2xl: 2.5rem;
+  --text-display: clamp(2.75rem, 9vw, 6.5rem);
+
+  /* strict 8px spacing grid */
+  --s1: 0.5rem;
+  --s2: 1rem;
+  --s3: 1.5rem;
+  --s4: 2rem;
+  --s6: 3rem;
+  --s8: 4rem;
+  --s12: 6rem;
+
+  --border: 2px solid var(--rule);
+  --hairline: 1px solid var(--rule);
+  --max-width: 72rem;
+  --measure: 70ch;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: oklch(95% 0.005 90);
+    --paper: oklch(17% 0.005 80);
+    --accent: oklch(68% 0.21 35);
+  }
+}
+
+/* ---------- reset ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  color-scheme: light dark;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--paper);
+  min-height: 100vh;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* ---------- the visible page frame ---------- */
+
+.frame {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  border-inline: var(--hairline);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.frame > main {
+  flex: 1;
+}
+
+/* shared horizontal padding inside the frame */
+.pad {
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+/* ---------- typography ---------- */
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 750;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.display {
+  font-size: var(--text-display);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+/* mono metadata label — the system's signature texture */
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+}
+
+/* ---------- links, selection, focus ---------- */
+
+a {
+  color: inherit;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- skip link ---------- */
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 10;
+  background: var(--ink);
+  color: var(--paper);
+  padding: var(--s1) var(--s2);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+}
+
+.skip-link:focus-visible {
+  left: var(--s2);
+  top: var(--s2);
+}
+
+/* ---------- ruled sections ---------- */
+
+.section {
+  border-top: var(--border);
+  padding-block: var(--s6) var(--s12);
+}
+
+/* ---------- prose (rendered markdown) ---------- */
+
+.prose {
+  max-width: var(--measure);
+}
+
+.prose > * + * {
+  margin-block-start: var(--s3);
+}
+
+.prose h2 {
+  font-size: var(--text-xl);
+  margin-block-start: var(--s8);
+  padding-block-start: var(--s3);
+  border-top: var(--hairline);
+}
+
+.prose h3 {
+  font-size: var(--text-lg);
+  margin-block-start: var(--s6);
+}
+
+.prose ul,
+.prose ol {
+  padding-inline-start: 1.25em;
+}
+
+.prose li + li {
+  margin-block-start: var(--s1);
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+.prose :not(pre) > code {
+  border: var(--hairline);
+  padding: 0.1em 0.35em;
+}
+
+.prose pre {
+  border: var(--border);
+  padding: var(--s2) var(--s3);
+  overflow-x: auto;
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+/* keep code blocks readable in both schemes without shiki theme JS */
+.prose pre code {
+  background: none;
+}
+
+.prose blockquote {
+  border-inline-start: none;
+  border-block: var(--hairline);
+  padding-block: var(--s2);
+  font-style: italic;
+}
+
+.prose hr {
+  border: 0;
+  border-top: var(--border);
+  margin-block: var(--s6);
+}
+
+.prose table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: var(--text-sm);
+}
+
+.prose th,
+.prose td {
+  border: var(--hairline);
+  padding: var(--s1) var(--s2);
+  text-align: left;
+}
+
+.prose th {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: var(--text-xs);
+}
+
+/* ---------- print (resume) ---------- */
+
+@media print {
+  :root {
+    --ink: #000;
+    --paper: #fff;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .frame {
+    border: none;
+    max-width: none;
+  }
+
+  .section {
+    padding-block: 1rem;
+    break-inside: avoid;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}

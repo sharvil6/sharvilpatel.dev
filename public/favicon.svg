@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <style>
+    rect { fill: #faf9f5; stroke: #16140f; }
+    @media (prefers-color-scheme: dark) {
+      rect { fill: #16140f; stroke: #f2f1ec; }
+    }
+  </style>
+  <rect x="6" y="6" width="116" height="116" stroke-width="12" />
+  <text x="64" y="68" text-anchor="middle" dominant-baseline="central"
+    font-family="Helvetica, Arial, sans-serif" font-size="64" font-weight="800"
+    fill="#f43c00">SP</text>
+</svg>

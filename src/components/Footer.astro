@@ -1,0 +1,40 @@
+---
+const year = new Date().getFullYear();
+
+const links = [
+  { href: 'https://github.com/sharvilpatel', label: 'GitHub' },
+  { href: 'mailto:sharvilpatel95@gmail.com', label: 'Email' },
+  { href: '/rss.xml', label: 'RSS' },
+];
+---
+
+<footer class="pad no-print">
+  <ul class="mono-label">
+    {
+      links.map((link) => (
+        <li>
+          <a href={link.href}>{link.label}</a>
+        </li>
+      ))
+    }
+  </ul>
+  <p class="mono-label">&copy; {year} Sharvil Patel &middot; No JavaScript was shipped to your browser</p>
+</footer>
+
+<style>
+  footer {
+    border-top: var(--border);
+    padding-block: var(--s3);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--s2) var(--s4);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: var(--s3);
+  }
+</style>

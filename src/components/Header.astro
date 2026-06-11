@@ -1,0 +1,115 @@
+---
+const nav = [
+  { href: '/projects', label: 'Projects' },
+  { href: '/resume', label: 'Resume' },
+  { href: '/blog', label: 'Writing' },
+];
+
+const current = Astro.url.pathname;
+const isActive = (href: string) => current === href || current.startsWith(href + '/');
+---
+
+<header class="pad">
+  <a href="/" class="wordmark mono-label">Sharvil&nbsp;Patel</a>
+  <nav aria-label="Main">
+    <ul class="mono-label">
+      {
+        nav.map((item) => (
+          <li>
+            <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<style>
+  header {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: var(--s3);
+    border-bottom: var(--border);
+  }
+
+  .wordmark {
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding-block: var(--s2);
+  }
+
+  .wordmark:hover {
+    color: var(--paper);
+    background: var(--ink);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    height: 100%;
+  }
+
+  li {
+    display: flex;
+    border-left: var(--hairline);
+  }
+
+  nav a {
+    display: flex;
+    align-items: center;
+    padding: var(--s2) clamp(0.5rem, 2vw, 1.5rem);
+    text-decoration: none;
+  }
+
+  nav a:hover {
+    color: var(--paper);
+    background: var(--ink);
+  }
+
+  nav a[aria-current='page'] {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+
+  @media (max-width: 33rem) {
+    header {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+
+    .wordmark {
+      padding-block: var(--s2);
+    }
+
+    nav {
+      border-top: var(--hairline);
+      margin-inline: calc(-1 * clamp(1rem, 4vw, 2.5rem));
+    }
+
+    ul {
+      width: 100%;
+    }
+
+    li {
+      flex: 1;
+    }
+
+    li:first-child {
+      border-left: none;
+    }
+
+    nav a {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

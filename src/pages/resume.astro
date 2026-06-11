@@ -1,0 +1,201 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+// Placeholder resume content — replace every entry with the real record.
+const experience = [
+  {
+    company: 'Placeholder Corp',
+    title: 'Senior Software Engineer',
+    range: '2023 — Present',
+    location: 'Remote',
+    bullets: [
+      'Led design and rollout of a realtime metrics pipeline ingesting 40k events/sec, cutting incident dashboard latency from 8s to 300ms.',
+      'Built shipit, a release automation CLI adopted by three teams; release cadence went from monthly to weekly.',
+      'Mentored two engineers to promotion; ran the team’s design-review rotation.',
+    ],
+  },
+  {
+    company: 'Example Systems',
+    title: 'Software Engineer',
+    range: '2020 — 2023',
+    location: 'City, ST',
+    bullets: [
+      'Owned the billing reconciliation service (Go, Postgres); reduced unmatched transactions by 97%.',
+      'Introduced contract tests across 14 internal services, eliminating a class of integration regressions.',
+      'On-call rotation lead; halved mean time to resolution by rewriting the runbook system.',
+    ],
+  },
+];
+
+const skills = [
+  { group: 'Languages', items: 'Go, Rust, TypeScript, Python, SQL' },
+  { group: 'Systems', items: 'Kafka, ClickHouse, Postgres, SQLite, Redis, S3' },
+  { group: 'Infra', items: 'Docker, Terraform, GitHub Actions, Cloudflare, AWS' },
+];
+
+const education = {
+  school: 'State University',
+  degree: 'B.S. Computer Science',
+  range: '2016 — 2020',
+};
+---
+
+<BaseLayout title="Resume" description="Resume of Sharvil Patel, software engineer.">
+  <div class="pad">
+    <header class="resume-header">
+      <div>
+        <h1>Sharvil Patel</h1>
+        <p class="mono-label contact-strip">
+          <a href="mailto:sharvilpatel95@gmail.com">sharvilpatel95@gmail.com</a> &middot;
+          <a href="https://github.com/sharvilpatel">github.com/sharvilpatel</a> &middot;
+          sharvilpatel.dev
+        </p>
+      </div>
+      <a class="download mono-label no-print" href="/resume/sharvil-patel-resume.pdf" download>
+        Download PDF &darr;
+      </a>
+    </header>
+
+    <section class="section">
+      <SectionHeading index="01" title="Experience" />
+      {
+        experience.map((job) => (
+          <article class="job">
+            <div class="job-head">
+              <h3>{job.title} &middot; {job.company}</h3>
+              <p class="mono-label">{job.range} &middot; {job.location}</p>
+            </div>
+            <ul>
+              {job.bullets.map((line) => (
+                <li>{line}</li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </section>
+
+    <section class="section">
+      <SectionHeading index="02" title="Projects" />
+      <p class="prose">
+        Selected personal projects with full writeups:
+        <a href="/projects/realtime-metrics-pipeline">Realtime Metrics Pipeline</a>,
+        <a href="/projects/self-hosted-photo-vault">Self-Hosted Photo Vault</a>, and
+        <a href="/projects/cli-release-tool">shipit</a>.
+      </p>
+    </section>
+
+    <section class="section">
+      <SectionHeading index="03" title="Skills" />
+      <dl class="skills">
+        {
+          skills.map((row) => (
+            <div class="skill-row">
+              <dt class="mono-label">{row.group}</dt>
+              <dd>{row.items}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <section class="section">
+      <SectionHeading index="04" title="Education" />
+      <div class="job-head">
+        <h3>{education.degree} &middot; {education.school}</h3>
+        <p class="mono-label">{education.range}</p>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .resume-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: var(--s3);
+    padding-block: var(--s8) var(--s4);
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+  }
+
+  .contact-strip {
+    margin-block-start: var(--s1);
+  }
+
+  .download {
+    border: var(--border);
+    padding: var(--s1) var(--s3);
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .download:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .section {
+    padding-block: var(--s4) var(--s6);
+  }
+
+  .job + .job {
+    margin-block-start: var(--s4);
+    border-top: var(--hairline);
+    padding-block-start: var(--s4);
+  }
+
+  .job-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: var(--s1) var(--s3);
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+  }
+
+  .job ul {
+    margin-block-start: var(--s2);
+    padding-inline-start: 1.25em;
+    max-width: var(--measure);
+  }
+
+  .job li + li {
+    margin-block-start: var(--s1);
+  }
+
+  .skills {
+    margin: 0;
+  }
+
+  .skill-row {
+    display: grid;
+    grid-template-columns: 12ch 1fr;
+    gap: var(--s3);
+    padding-block: var(--s2);
+    border-bottom: var(--hairline);
+  }
+
+  .skill-row dt {
+    color: var(--accent);
+  }
+
+  .skill-row dd {
+    margin: 0;
+  }
+
+  @media (max-width: 45rem) {
+    .skill-row {
+      grid-template-columns: 1fr;
+      gap: var(--s1);
+    }
+  }
+</style>
