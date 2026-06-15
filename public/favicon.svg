@@ -1,17 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Sharvil Patel">
   <style>
     .tile { fill: #fbf8f2; }
-    .mark { fill: #211c17; }
-    .dot  { fill: #386ca0; }
+    .mark { fill: #2c2620; }
+    .dot  { fill: #3f6ea4; }
     @media (prefers-color-scheme: dark) {
-      .tile { fill: #13110e; }
-      .mark { fill: #e8e4dd; }
+      .tile { fill: #1a1713; }
+      .mark { fill: #e9e5dd; }
       .dot  { fill: #66abe5; }
     }
   </style>
-  <rect class="tile" width="32" height="32" rx="7" />
-  <text class="mark" x="12.7" y="16.8" text-anchor="middle" dominant-baseline="central"
+  <rect class="tile" width="32" height="32" rx="7.5" />
+  <text class="mark" x="9.6" y="16.4" text-anchor="middle" dominant-baseline="central"
     font-family="'Helvetica Neue', Helvetica, Arial, 'Segoe UI', system-ui, sans-serif"
-    font-size="21" font-weight="600">S</text>
-  <circle class="dot" cx="23.6" cy="23.4" r="2.3" />
+    font-size="20" font-weight="660" letter-spacing="-0.5">S</text>
+  <circle class="dot" cx="21.6" cy="21.2" r="2.4" />
 </svg>

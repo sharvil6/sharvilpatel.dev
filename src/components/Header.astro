@@ -10,7 +10,9 @@ const isActive = (href: string) => current === href || current.startsWith(href +
 ---
 
 <header class="pad">
-  <a href="/" class="wordmark">Sharvil&nbsp;Patel</a>
+  <a href="/" class="mark" aria-label="Sharvil Patel, home">
+    <span aria-hidden="true">SP</span><span class="mark-dot" aria-hidden="true"></span>
+  </a>
   <nav aria-label="Main">
     <ul>
       {
@@ -40,13 +42,29 @@ const isActive = (href: string) => current === href || current.startsWith(href +
     padding-block: var(--s4);
   }
 
-  .wordmark {
-    font-weight: 600;
-    letter-spacing: -0.01em;
+  /* identity mark: tight initials + the accent dot as a closing period.
+     the dot is the site's recurring motif (status indicator, favicon). */
+  .mark {
+    display: inline-flex;
+    align-items: baseline;
+    font-size: 1.2rem;
+    font-weight: 660;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    transition: color 0.2s var(--ease-out);
   }
 
-  .wordmark:hover {
-    color: var(--accent);
+  .mark-dot {
+    width: 0.26em;
+    height: 0.26em;
+    margin-inline-start: 0.12em;
+    border-radius: 50%;
+    background: var(--accent);
+    transition: transform 0.25s var(--ease-out);
+  }
+
+  .mark:hover .mark-dot {
+    transform: translateY(-0.28em);
   }
 
   ul {
