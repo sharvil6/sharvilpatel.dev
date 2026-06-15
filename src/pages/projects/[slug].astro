@@ -65,13 +65,12 @@ const meta = [
   }
 
   .crumb {
-    color: var(--accent);
-    margin-block-end: var(--s2);
+    margin-block-end: var(--s3);
   }
 
   .crumb a {
-    color: var(--ink);
-    text-decoration: none;
+    color: var(--muted);
+    transition: color 0.2s var(--ease-out);
   }
 
   .crumb a:hover {
@@ -87,6 +86,7 @@ const meta = [
     font-size: var(--text-lg);
     max-width: var(--measure);
     text-wrap: balance;
+    color: var(--muted);
   }
 
   .prose {
@@ -97,16 +97,16 @@ const meta = [
     display: flex;
     justify-content: space-between;
     gap: var(--s3);
-    border-top: var(--border);
-    padding-block: var(--s3);
+    border-top: var(--hairline);
+    padding-block: var(--s4);
   }
 
   .pagination a {
-    text-decoration: none;
+    color: var(--muted);
+    transition: color 0.2s var(--ease-out);
   }
 
   .pagination a:hover {
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
+    color: var(--accent);
   }
 </style>

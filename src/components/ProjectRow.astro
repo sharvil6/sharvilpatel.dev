@@ -8,88 +8,82 @@ interface Props {
   index: number;
 }
 
-const { project, index } = Astro.props;
+const { project } = Astro.props;
 const { title, summary, date, tech } = project.data;
 ---
 
 <article class="row">
   <a href={`/projects/${project.id}`} class="row-link">
-    <span class="index mono-label" aria-hidden="true">{String(index).padStart(2, '0')}</span>
-    <span class="body">
-      <span class="title">{title}</span>
-      <span class="summary">{summary}</span>
-    </span>
-    <span class="year mono-label">{formatYear(date)}</span>
+    <div class="head">
+      <h3 class="title">{title}<span class="go" aria-hidden="true">&rarr;</span></h3>
+      <span class="year mono-label">{formatYear(date)}</span>
+    </div>
+    <p class="summary">{summary}</p>
   </a>
-  <div class="tags-row">
-    <TagList tags={tech} />
-  </div>
+  <TagList tags={tech} />
 </article>
 
 <style>
   .row {
-    border-bottom: var(--hairline);
-    position: relative;
+    padding-block: var(--s4);
+    border-top: var(--hairline);
+  }
+
+  /* the section heading's trailing rule already opens the list */
+  .row:first-child {
+    border-top: none;
+    padding-block-start: 0;
   }
 
   .row-link {
-    display: grid;
-    grid-template-columns: 4ch 1fr auto;
-    gap: var(--s3);
-    align-items: baseline;
-    padding: var(--s3) var(--s2);
-    text-decoration: none;
-  }
-
-  /* brutalist inversion hover — zero JS */
-  .row-link:hover,
-  .row-link:focus-visible {
-    background: var(--ink);
-    color: var(--paper);
-  }
-
-  .index {
-    color: var(--accent);
-  }
-
-  .row-link:hover .index,
-  .row-link:focus-visible .index {
-    color: var(--paper);
-  }
-
-  .body {
     display: block;
+  }
+
+  .head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--s3);
   }
 
   .title {
-    display: block;
-    font-size: var(--text-lg);
-    font-weight: 750;
-    letter-spacing: -0.01em;
-    line-height: 1.1;
+    font-size: var(--text-xl);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    transition: color 0.2s var(--ease-out);
+  }
+
+  .go {
+    display: inline-block;
+    margin-inline-start: 0.4em;
+    color: var(--accent);
+    opacity: 0;
+    transform: translateX(-0.25em);
+    transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+  }
+
+  .row-link:hover .title,
+  .row-link:focus-visible .title {
+    color: var(--accent);
+  }
+
+  .row-link:hover .go,
+  .row-link:focus-visible .go {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .year {
+    flex: none;
   }
 
   .summary {
-    display: block;
     margin-block-start: var(--s1);
+    color: var(--muted);
     max-width: var(--measure);
   }
 
-  .tags-row {
-    padding: 0 var(--s2) var(--s3) calc(4ch + var(--s3) + var(--s2));
-  }
-
-  @media (max-width: 45rem) {
-    .row-link {
-      grid-template-columns: 4ch 1fr;
-    }
-
-    .year {
-      grid-column: 2;
-    }
-
-    .tags-row {
-      padding-inline-start: var(--s2);
-    }
+  article :global(.tags) {
+    margin-block-start: var(--s2);
   }
 </style>

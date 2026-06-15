@@ -18,7 +18,11 @@ const { items } = Astro.props;
       <div class="pair">
         <dt class="mono-label">{item.label}</dt>
         <dd>
-          {item.href ? <a href={item.href}>{item.value}</a> : item.value}
+          {item.href ? (
+            <a href={item.href}>{item.value}</a>
+          ) : (
+            item.value
+          )}
         </dd>
       </div>
     ))
@@ -28,29 +32,40 @@ const { items } = Astro.props;
 <style>
   .meta {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-    border-block: var(--border);
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: var(--s3) var(--s4);
+    padding-block: var(--s4);
+    border-block: var(--hairline);
   }
 
   .pair {
-    padding: var(--s2);
-    border-right: var(--hairline);
-  }
-
-  .pair:last-child {
-    border-right: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
   }
 
   dt {
     font-size: var(--text-xs);
-    color: var(--accent);
-    margin-block-end: 0.25rem;
+    color: var(--faint);
   }
 
   dd {
     margin: 0;
     font-family: var(--font-mono);
     font-size: var(--text-sm);
+    color: var(--ink);
     overflow-wrap: anywhere;
+  }
+
+  dd a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklch, var(--accent) 35%, transparent);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s var(--ease-out);
+  }
+
+  dd a:hover {
+    text-decoration-color: var(--accent);
   }
 </style>

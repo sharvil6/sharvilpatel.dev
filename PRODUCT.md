@@ -18,14 +18,15 @@ The design IS the product here. A portfolio for an engineer is itself evidence o
 
 ## Brand & Tone
 
-Swiss/brutalist-lite. Strong visible grid, ruled and numbered sections, bold tight-set sans headings, monospace metadata, one signal accent color, sharp edges everywhere. High contrast, zero decoration, zero client-side JavaScript. The restraint is the statement: everything on screen is structure or content, nothing is ornament.
+Editorial-calm minimalism. Whitespace carries the page: a single centered reading column with no boxed frame, generous and varied vertical rhythm, hierarchy built from type scale and air rather than rules. A refined system sans does the work; monospace is reserved for true metadata (dates, stack, labels). One quiet accent (a muted slate-blue) appears only on links and small marks, well under 10% of the surface. Hairline rules are used sparingly and never as colored accent stripes. Light by default, with a warm-tinted dark scheme. Zero decoration, zero client-side JavaScript. The restraint is the statement: everything on screen is content or the quiet structure that serves it.
 
 Copy is plain, confident, first-person, and short. No buzzwords, no "passionate about."
 
 ## Anti-references
 
 - Default developer-portfolio templates (gradient hero, emoji wave, three identical project cards with GitHub stars).
-- Glassmorphism, drop shadows, rounded corners, gradient text.
+- Heavy Swiss/brutalist treatments: visible boxed frames, 2px rules on everything, numbered ruled sections, uppercase tight-set poster display, invert-on-hover blocks. The earlier version of this site leaned here; the redesign moved away from it deliberately.
+- Glassmorphism, drop shadows, gradient text, colored side-stripe borders.
 - Dark-mode-by-default "hacker" aesthetic.
 - Anything that looks like a Notion page or a resume builder export.
 

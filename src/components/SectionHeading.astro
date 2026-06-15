@@ -1,40 +1,44 @@
 ---
 interface Props {
-  index: string;
   title: string;
+  /** Retained for caller compatibility; no longer rendered as a numbered index. */
+  index?: string;
   count?: number;
 }
 
-const { index, title, count } = Astro.props;
+const { title, count } = Astro.props;
 ---
 
 <div class="section-heading">
-  <h2 class="mono-label">
-    <span class="index" aria-hidden="true">{index}&nbsp;/</span>
-    {title}
-  </h2>
-  {count !== undefined && <span class="mono-label count">{String(count).padStart(2, '0')} {count === 1 ? 'item' : 'items'}</span>}
+  <h2>{title}</h2>
+  <span class="rule" aria-hidden="true"></span>
+  {count !== undefined && <span class="count mono-label">{count}</span>}
 </div>
 
 <style>
   .section-heading {
     display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: var(--s2);
+    align-items: center;
+    gap: var(--s3);
     margin-block-end: var(--s4);
   }
 
   h2 {
-    font-weight: 700;
-    letter-spacing: 0.08em;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--muted);
+    flex: none;
   }
 
-  .index {
-    color: var(--accent);
+  .rule {
+    flex: 1;
+    height: 1px;
+    background: var(--line);
   }
 
   .count {
-    color: var(--ink);
+    flex: none;
   }
 </style>

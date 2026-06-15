@@ -5,20 +5,29 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout title="404" description="Page not found.">
   <section class="lost pad">
     <p class="display" role="presentation">404</p>
-    <p class="mono-label">Nothing at this address. <a href="/">Return to index &rarr;</a></p>
+    <p class="lost-note mono-label">Nothing at this address. <a href="/">Return home &rarr;</a></p>
   </section>
 </BaseLayout>
 
 <style>
   .lost {
-    padding-block: var(--s12);
+    padding-block: var(--s16);
   }
 
   .display {
-    color: var(--accent);
+    color: var(--faint);
   }
 
-  .mono-label {
+  .lost-note {
     margin-block-start: var(--s3);
+  }
+
+  .lost-note a {
+    color: var(--accent);
+    transition: opacity 0.2s var(--ease-out);
+  }
+
+  .lost-note a:hover {
+    opacity: 0.7;
   }
 </style>

@@ -1,33 +1,36 @@
 /* ============================================================
    sharvilpatel.dev — design system
-   Swiss / brutalist-lite: visible structure, ruled sections,
-   bold tight sans display, mono metadata, one signal accent.
-   Zero client-side JS; the CSS does all the work.
+   Editorial-calm minimalism: whitespace carries the page,
+   refined system sans, mono reserved for true metadata,
+   one quiet accent. Zero client-side JS; the CSS does the work.
    ============================================================ */
 
 /* ---------- tokens ---------- */
 
 :root {
   /* color — warm-tinted neutrals, never pure black/white */
-  --ink: oklch(15% 0.005 80);
-  --paper: oklch(98% 0.006 90);
-  --accent: oklch(62% 0.22 33); /* signal orange, Swiss poster energy */
-  --rule: var(--ink);
+  --ink: oklch(23% 0.012 70);
+  --paper: oklch(98% 0.008 85);
+  --muted: oklch(52% 0.01 70); /* secondary text, metadata */
+  --faint: oklch(55% 0.008 75); /* tertiary, de-emphasized labels (AA on paper) */
+  --line: oklch(89% 0.008 80); /* hairline rules, never an accent */
+  --accent: oklch(52% 0.1 250); /* muted slate-blue, links + small marks only */
 
-  /* type */
+  /* type — system stacks, no web fonts (perfect-Lighthouse) */
   --font-sans: "Helvetica Neue", Helvetica, Arial, "Segoe UI", system-ui, sans-serif;
   --font-mono: ui-monospace, "Cascadia Code", "SF Mono", Consolas, "Segoe UI Mono", monospace;
 
-  /* modular scale ~1.25, fluid display */
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 1.0625rem;
-  --text-lg: 1.3125rem;
-  --text-xl: 1.625rem;
-  --text-2xl: 2.5rem;
-  --text-display: clamp(2.75rem, 9vw, 6.5rem);
+  /* modular scale, committed 1.25 ratio from a 17px body */
+  --text-xs: 0.75rem; /* 12 — captions, tags */
+  --text-sm: 0.875rem; /* 14 — mono labels, metadata */
+  --text-base: 1.0625rem; /* 17 — body */
+  --text-lead: clamp(1.3125rem, 1.05rem + 1.1vw, 1.5rem); /* hero positioning */
+  --text-lg: 1.3125rem; /* 21 — h3, list titles */
+  --text-xl: 1.625rem; /* 26 — h2, project/post titles */
+  --text-2xl: 2.0625rem; /* 33 — page h1 */
+  --text-display: clamp(2.75rem, 7vw, 5rem); /* name as oversize word */
 
-  /* strict 8px spacing grid */
+  /* spacing — 8px grid */
   --s1: 0.5rem;
   --s2: 1rem;
   --s3: 1.5rem;
@@ -35,18 +38,23 @@
   --s6: 3rem;
   --s8: 4rem;
   --s12: 6rem;
+  --s16: 8rem;
 
-  --border: 2px solid var(--rule);
-  --hairline: 1px solid var(--rule);
-  --max-width: 72rem;
-  --measure: 70ch;
+  --hairline: 1px solid var(--line);
+  --max-width: 60rem;
+  --measure: 68ch;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --ink: oklch(95% 0.005 90);
-    --paper: oklch(17% 0.005 80);
-    --accent: oklch(68% 0.21 35);
+    --ink: oklch(92% 0.01 85);
+    --paper: oklch(18% 0.008 80);
+    --muted: oklch(68% 0.012 80);
+    --faint: oklch(62% 0.01 80);
+    --line: oklch(30% 0.008 80);
+    --accent: oklch(72% 0.11 245);
   }
 }
 
@@ -67,10 +75,13 @@ html {
 body {
   font-family: var(--font-sans);
   font-size: var(--text-base);
-  line-height: 1.55;
+  line-height: 1.6;
   color: var(--ink);
   background: var(--paper);
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
 }
 
 img,
@@ -79,12 +90,11 @@ svg {
   max-width: 100%;
 }
 
-/* ---------- the visible page frame ---------- */
+/* ---------- the page column ---------- */
 
 .frame {
   max-width: var(--max-width);
   margin-inline: auto;
-  border-inline: var(--hairline);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -94,9 +104,9 @@ svg {
   flex: 1;
 }
 
-/* shared horizontal padding inside the frame */
+/* shared horizontal gutters */
 .pad {
-  padding-inline: clamp(1rem, 4vw, 2.5rem);
+  padding-inline: clamp(1.25rem, 6vw, 3rem);
 }
 
 /* ---------- typography ---------- */
@@ -105,50 +115,62 @@ h1,
 h2,
 h3,
 h4 {
-  font-weight: 750;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  font-weight: 640;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
   text-wrap: balance;
 }
 
 .display {
   font-size: var(--text-display);
-  font-weight: 800;
-  line-height: 0.95;
+  font-weight: 660;
+  line-height: 1;
   letter-spacing: -0.03em;
-  text-transform: uppercase;
 }
 
-/* mono metadata label — the system's signature texture */
+/* mono metadata — quiet technical texture, no shouting */
 .mono-label {
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  line-height: 1.4;
+  letter-spacing: 0;
+  line-height: 1.5;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
 }
 
 /* ---------- links, selection, focus ---------- */
 
 a {
   color: inherit;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
+  text-decoration: none;
 }
 
-a:hover {
+/* default content links: accent with a quiet underline */
+.prose a,
+.contact a,
+.contact-strip a {
   color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklch, var(--accent) 35%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s var(--ease-out);
+}
+
+.prose a:hover,
+.contact a:hover,
+.contact-strip a:hover {
+  text-decoration-color: var(--accent);
 }
 
 ::selection {
-  background: var(--accent);
-  color: var(--paper);
+  background: color-mix(in oklch, var(--accent) 22%, transparent);
 }
 
 :focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 2px;
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 /* ---------- skip link ---------- */
@@ -161,7 +183,7 @@ a:hover {
   color: var(--paper);
   padding: var(--s1) var(--s2);
   font-family: var(--font-mono);
-  text-transform: uppercase;
+  font-size: var(--text-sm);
 }
 
 .skip-link:focus-visible {
@@ -169,17 +191,20 @@ a:hover {
   top: var(--s2);
 }
 
-/* ---------- ruled sections ---------- */
+/* ---------- sections: space, not rules ---------- */
 
 .section {
-  border-top: var(--border);
-  padding-block: var(--s6) var(--s12);
+  padding-block: var(--s8);
 }
 
 /* ---------- prose (rendered markdown) ---------- */
 
 .prose {
   max-width: var(--measure);
+}
+
+.prose p {
+  text-wrap: pretty;
 }
 
 .prose > * + * {
@@ -189,8 +214,6 @@ a:hover {
 .prose h2 {
   font-size: var(--text-xl);
   margin-block-start: var(--s8);
-  padding-block-start: var(--s3);
-  border-top: var(--hairline);
 }
 
 .prose h3 {
@@ -213,33 +236,34 @@ a:hover {
 }
 
 .prose :not(pre) > code {
-  border: var(--hairline);
+  background: color-mix(in oklch, var(--ink) 6%, transparent);
   padding: 0.1em 0.35em;
+  border-radius: 3px;
 }
 
 .prose pre {
-  border: var(--border);
+  background: color-mix(in oklch, var(--ink) 5%, transparent);
   padding: var(--s2) var(--s3);
   overflow-x: auto;
   font-size: var(--text-sm);
   line-height: 1.6;
+  border-radius: 4px;
 }
 
-/* keep code blocks readable in both schemes without shiki theme JS */
 .prose pre code {
   background: none;
+  padding: 0;
 }
 
 .prose blockquote {
-  border-inline-start: none;
-  border-block: var(--hairline);
-  padding-block: var(--s2);
+  padding-inline: var(--s3);
+  color: var(--muted);
   font-style: italic;
 }
 
 .prose hr {
   border: 0;
-  border-top: var(--border);
+  border-top: var(--hairline);
   margin-block: var(--s6);
 }
 
@@ -251,16 +275,28 @@ a:hover {
 
 .prose th,
 .prose td {
-  border: var(--hairline);
-  padding: var(--s1) var(--s2);
+  border-bottom: var(--hairline);
+  padding: var(--s1) var(--s2) var(--s1) 0;
   text-align: left;
 }
 
 .prose th {
   font-family: var(--font-mono);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-weight: 400;
   font-size: var(--text-xs);
+  color: var(--muted);
+}
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
 
 /* ---------- print (resume) ---------- */
@@ -269,6 +305,8 @@ a:hover {
   :root {
     --ink: #000;
     --paper: #fff;
+    --muted: #333;
+    --line: #999;
   }
 
   .no-print {
@@ -276,7 +314,6 @@ a:hover {
   }
 
   .frame {
-    border: none;
     max-width: none;
   }
 
@@ -285,6 +322,7 @@ a:hover {
     break-inside: avoid;
   }
 
+  .prose a,
   a {
     text-decoration: none;
   }

@@ -1,9 +1,9 @@
 const MONTHS = [
-  'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',
-  'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC',
+  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
 ];
 
-/** "NOV 2025" — for mono metadata rows */
+/** "Nov 2025" — for mono metadata rows */
 export function formatDate(date: Date): string {
   return `${MONTHS[date.getUTCMonth()]} ${date.getUTCFullYear()}`;
 }

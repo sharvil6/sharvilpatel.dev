@@ -129,15 +129,18 @@ const education = {
   }
 
   .download {
-    border: var(--border);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--accent);
+    border: var(--hairline);
+    border-color: color-mix(in oklch, var(--accent) 40%, var(--line));
     padding: var(--s1) var(--s3);
-    text-decoration: none;
-    font-weight: 700;
+    border-radius: 4px;
+    transition: background 0.2s var(--ease-out);
   }
 
   .download:hover {
-    background: var(--ink);
-    color: var(--paper);
+    background: color-mix(in oklch, var(--accent) 10%, transparent);
   }
 
   .section {
@@ -185,7 +188,7 @@ const education = {
   }
 
   .skill-row dt {
-    color: var(--accent);
+    color: var(--muted);
   }
 
   .skill-row dd {

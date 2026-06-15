@@ -10,13 +10,17 @@ const isActive = (href: string) => current === href || current.startsWith(href +
 ---
 
 <header class="pad">
-  <a href="/" class="wordmark mono-label">Sharvil&nbsp;Patel</a>
+  <a href="/" class="wordmark">Sharvil&nbsp;Patel</a>
   <nav aria-label="Main">
-    <ul class="mono-label">
+    <ul>
       {
         nav.map((item) => (
           <li>
-            <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+            <a
+              href={item.href}
+              class:list={['nav-link', { active: isActive(item.href) }]}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+            >
               {item.label}
             </a>
           </li>
@@ -29,87 +33,44 @@ const isActive = (href: string) => current === href || current.startsWith(href +
 <style>
   header {
     display: flex;
-    align-items: stretch;
+    align-items: baseline;
     justify-content: space-between;
-    gap: var(--s3);
-    border-bottom: var(--border);
+    flex-wrap: wrap;
+    gap: var(--s2) var(--s4);
+    padding-block: var(--s4);
   }
 
   .wordmark {
-    font-weight: 700;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    padding-block: var(--s2);
+    font-weight: 600;
+    letter-spacing: -0.01em;
   }
 
   .wordmark:hover {
-    color: var(--paper);
-    background: var(--ink);
+    color: var(--accent);
   }
 
   ul {
     list-style: none;
     padding: 0;
     display: flex;
-    height: 100%;
+    gap: clamp(1rem, 4vw, 2rem);
   }
 
-  li {
-    display: flex;
-    border-left: var(--hairline);
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--muted);
+    padding-block-end: 2px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
   }
 
-  nav a {
-    display: flex;
-    align-items: center;
-    padding: var(--s2) clamp(0.5rem, 2vw, 1.5rem);
-    text-decoration: none;
+  .nav-link:hover {
+    color: var(--ink);
   }
 
-  nav a:hover {
-    color: var(--paper);
-    background: var(--ink);
-  }
-
-  nav a[aria-current='page'] {
-    text-decoration: underline;
-    text-decoration-color: var(--accent);
-    text-decoration-thickness: 2px;
-    text-underline-offset: 4px;
-  }
-
-  @media (max-width: 33rem) {
-    header {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0;
-    }
-
-    .wordmark {
-      padding-block: var(--s2);
-    }
-
-    nav {
-      border-top: var(--hairline);
-      margin-inline: calc(-1 * clamp(1rem, 4vw, 2.5rem));
-    }
-
-    ul {
-      width: 100%;
-    }
-
-    li {
-      flex: 1;
-    }
-
-    li:first-child {
-      border-left: none;
-    }
-
-    nav a {
-      width: 100%;
-      justify-content: center;
-    }
+  .nav-link.active {
+    color: var(--ink);
+    border-bottom-color: var(--accent);
   }
 </style>

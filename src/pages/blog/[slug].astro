@@ -36,17 +36,16 @@ const { title, description, pubDate, tags } = post.data;
 <style>
   .post-header {
     padding-block: var(--s8) var(--s4);
-    border-bottom: var(--border);
+    border-bottom: var(--hairline);
   }
 
   .meta {
-    color: var(--accent);
-    margin-block-end: var(--s2);
+    margin-block-end: var(--s3);
   }
 
   .meta a {
-    color: var(--ink);
-    text-decoration: none;
+    color: var(--muted);
+    transition: color 0.2s var(--ease-out);
   }
 
   .meta a:hover {

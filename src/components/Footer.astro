@@ -9,7 +9,7 @@ const links = [
 ---
 
 <footer class="pad no-print">
-  <ul class="mono-label">
+  <ul>
     {
       links.map((link) => (
         <li>
@@ -18,17 +18,21 @@ const links = [
       ))
     }
   </ul>
-  <p class="mono-label">&copy; {year} Sharvil Patel &middot; No JavaScript was shipped to your browser</p>
+  <p>&copy; {year} Sharvil Patel &middot; No JavaScript shipped to your browser</p>
 </footer>
 
 <style>
   footer {
-    border-top: var(--border);
-    padding-block: var(--s3);
+    margin-block-start: var(--s8);
+    border-top: var(--hairline);
+    padding-block: var(--s4);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: var(--s2) var(--s4);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--muted);
   }
 
   ul {
@@ -36,5 +40,13 @@ const links = [
     padding: 0;
     display: flex;
     gap: var(--s3);
+  }
+
+  a {
+    transition: color 0.2s var(--ease-out);
+  }
+
+  a:hover {
+    color: var(--ink);
   }
 </style>
