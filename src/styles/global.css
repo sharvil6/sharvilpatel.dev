@@ -82,6 +82,10 @@
 html {
   color-scheme: light dark;
   -webkit-text-size-adjust: 100%;
+  /* Always reserve the scrollbar gutter so navigating between a tall page
+     (scrollbar present) and a short one (no scrollbar) doesn't change the
+     viewport width and shift the centered column sideways. */
+  scrollbar-gutter: stable;
 }
 
 body {
