@@ -19,15 +19,15 @@ const featured = (await getCollection('projects', ({ data }) => data.featured &&
     <p class="lead">
       Software engineer building reliable systems and the tooling around them.
     </p>
-    <p class="status mono-label"><span class="dot" aria-hidden="true"></span>Available for new roles</p>
+    <p class="status mono-label"><span class="dot" aria-hidden="true"></span>Building, reading, and occasionally writing it down.</p>
     <ul class="contact mono-label">
       <li><a href="mailto:sharvilpatel95@gmail.com">sharvilpatel95@gmail.com</a></li>
-      <li><a href="https://github.com/sharvilpatel">github.com/sharvilpatel</a></li>
-      <li>United States</li>
+      <li><a href="https://github.com/sharvil6">github.com/sharvil6</a></li>
+      <li>Austin, TX</li>
     </ul>
   </section>
 
-  <section class="work pad">
+  <section class="work pad reveal">
     <SectionHeading title="Selected work" count={featured.length} />
     <div class="work-list">
       {featured.map((project, i) => <ProjectRow project={project} index={i + 1} />)}
@@ -35,7 +35,7 @@ const featured = (await getCollection('projects', ({ data }) => data.featured &&
     <p class="all-link"><a href="/projects">All projects &rarr;</a></p>
   </section>
 
-  <section class="about pad">
+  <section class="about pad reveal">
     <SectionHeading title="About" />
     <div class="prose">
       <p>
@@ -50,7 +50,7 @@ const featured = (await getCollection('projects', ({ data }) => data.featured &&
     </div>
   </section>
 
-  <section class="contact-section pad">
+  <section class="contact-section pad reveal">
     <SectionHeading title="Contact" />
     <p class="contact-lead">Reach me directly:</p>
     <p class="contact-big">
@@ -88,6 +88,17 @@ const featured = (await getCollection('projects', ({ data }) => data.featured &&
     border-radius: 50%;
     background: var(--accent);
     flex: none;
+    /* a quiet heartbeat: the page is alive, not "available" */
+    animation: breathe 3.6s ease-in-out infinite;
+  }
+
+  @keyframes breathe {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.45; transform: scale(0.82); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .dot { animation: none; }
   }
 
   .contact {

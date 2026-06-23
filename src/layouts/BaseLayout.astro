@@ -21,6 +21,16 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Set the theme before first paint (no flash); also marks JS as available
+         so the no-op toggle stays hidden when scripting is off. -->
+    <script is:inline>
+      (() => {
+        const root = document.documentElement;
+        root.classList.add('js');
+        root.dataset.theme = localStorage.getItem('theme') || 'system';
+      })();
+    </script>
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />

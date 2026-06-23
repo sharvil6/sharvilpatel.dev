@@ -47,8 +47,10 @@
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* dark palette, written once and shared by two triggers below */
 @media (prefers-color-scheme: dark) {
-  :root {
+  /* follow the OS, unless the visitor has explicitly chosen a theme */
+  :root:not([data-theme="light"]):not([data-theme="dark"]) {
     --ink: oklch(92% 0.01 85);
     --paper: oklch(18% 0.008 80);
     --muted: oklch(68% 0.012 80);
@@ -56,6 +58,16 @@
     --line: oklch(30% 0.008 80);
     --accent: oklch(72% 0.11 245);
   }
+}
+
+/* explicit override: visitor picked dark via the header toggle */
+:root[data-theme="dark"] {
+  --ink: oklch(92% 0.01 85);
+  --paper: oklch(18% 0.008 80);
+  --muted: oklch(68% 0.012 80);
+  --faint: oklch(62% 0.01 80);
+  --line: oklch(30% 0.008 80);
+  --accent: oklch(72% 0.11 245);
 }
 
 /* ---------- reset ---------- */
@@ -287,9 +299,46 @@ a {
   color: var(--muted);
 }
 
+/* ---------- motion: scroll reveal + page transitions ---------- */
+
+/* Smooth cross-document fades between pages. Pure CSS (no SPA router);
+   browsers without support simply navigate instantly. */
+@view-transition {
+  navigation: auto;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Sections ease up + in as they scroll into view. Driven by the
+   scroll position, no JS. The hidden start state lives ONLY inside
+   these guards, so unsupported browsers and reduced-motion users
+   always see fully-rendered content. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 18%;
+    }
+  }
+}
+
 /* ---------- reduced motion ---------- */
 
 @media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+
   *,
   *::before,
   *::after {

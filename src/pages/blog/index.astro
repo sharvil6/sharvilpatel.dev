@@ -10,7 +10,7 @@ const posts = (await getCollection('blog', ({ data }) => showDrafts || !data.dra
 ---
 
 <BaseLayout title="Writing" description="Short articles on software engineering.">
-  <section class="section pad">
+  <section class="section pad reveal">
     <SectionHeading index="01" title="Writing" count={posts.length} />
     {
       posts.length === 0 ? (

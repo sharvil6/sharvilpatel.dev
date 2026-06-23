@@ -10,7 +10,7 @@ const projects = (await getCollection('projects', ({ data }) => showDrafts || !d
 ---
 
 <BaseLayout title="Projects" description="Project writeups: what was built, why, and what it cost.">
-  <section class="section pad">
+  <section class="section pad reveal">
     <SectionHeading index="01" title="Projects" count={projects.length} />
     <div class="work">
       {projects.map((project, i) => <ProjectRow project={project} index={i + 1} />)}
