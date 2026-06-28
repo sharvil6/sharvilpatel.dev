@@ -1,15 +1,12 @@
 ---
-title: "Agent Orchestration Platform - AI Product Factory"
+title: "Agent Orchestration Platform - Building an AI Product Factory"
 summary: "A custom agent harness built for Dell bringing AI to the entirety of the product lifecycle"
 date: 2026-02-01
 tech: ["Go", "Kafka", "ClickHouse", "Grafana", "Terraform"]
 role: "lead, developer"
-repo: ""
 featured: true
 order: 1
 ---
-
-> **Placeholder writeup.** Replace this with the real project. The structure below (problem, constraints, approach, outcome) is a good skeleton to keep.
 
 ## Problem
 
@@ -27,10 +24,19 @@ A custom agent harness would provide us unique opportunities to tune the agents 
 Focusing on observability gives me a unique ability to identify platform degradation, remediate accordingly, and keep the business running. This rich data allows us the opportunity to train a routing model to direct inference to the right model for the right job on a per LLM request level, not just a per user input level.
 By building around the primitive of fully autonomous background agents, we dramatically accelerated our organization.
 
+We've started identifying unique opportunities to extend our harness to the org-specific challenges that are slowing the business down. For example, we gave our harness access to cameras to capture the lighting conditions of various peripherals. We can now put our agent into long running loops adding new lighting effects to tons of peripherals while validating its own work.
+
+We quickly found that as we accelerate segments of our organization, new friction points emerge. For example, code generation was moving ridiculously fast and PRs were starting to pile up. We figured we could solve this problem with AI. We brought our agents to the tools where the context lived, deploying PR bots that performed cursory reviews of every PR that was opened and created a new control surface that allowed kicking off background agents from within the PR itself. Now that we're working this way, I can't imagine developing in the old way. It's actually ridiculous that developers have to receive PR feedback, check out the old branch, make the code change, push the branch, and repeat this cycle til the feedback stops. That's a ridiculous amount of context switching. Now, from within the PR itself, all comments(big or small) can be addressed by our background agents. Letting our developers focus on their more innovative work. We also started running into merge conflicts as the velocity of our team increased. These background agents turned out to be extremely adept at resovling merge conflicts for us, again removing a source of friction in our factory. 
+
+We grounded our approach in industry baselines. A few publications that have been particularly thought-provoking:
+- Stripe Minions
+- Ramp
+- Satya Nadella
+
 ## Outcome
 - Platform has extended agents to left of code and right of code
-
-
+- Expanding users to the entirety of Dell product organizations
+- PR bots turned on for every repository in CSG Software
 
 ## What I'd do differently
 
