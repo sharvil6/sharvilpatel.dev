@@ -6,7 +6,7 @@ tags: ["meta", "ai"]
 draft: false
 ---
 
-# Full disclosure
+## Full disclosure
 
 It is well documented why Anthropic is on track to be one of the most valuable companies in human history. I've been thinking there may be an interesting bear argument for Anthropic (and other frontier model providers). Before I go further, it's worth saying that I'm well-aware there are people who are much smarter and have access to much more information who consider Anthropic a full bull case, so I certainly must have blind spots.
 
