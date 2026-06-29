@@ -14,7 +14,7 @@ const posts = (await getCollection('blog', ({ data }) => showDrafts || !data.dra
     <SectionHeading index="01" title="Writing" count={posts.length} />
     {
       posts.length === 0 ? (
-        <p class="empty mono-label">Writing coming soon. Subscribe via <a href="/rss.xml">RSS</a> to catch the first post.</p>
+        <p class="empty mono-label">Writing coming soon. Check back for the first post.</p>
       ) : (
         <ul class="posts">
           {posts.map((post) => (

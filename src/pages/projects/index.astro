@@ -6,7 +6,7 @@ import ProjectRow from '../../components/ProjectRow.astro';
 
 const showDrafts = import.meta.env.DEV;
 const projects = (await getCollection('projects', ({ data }) => showDrafts || !data.draft))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  .sort((a, b) => a.data.order - b.data.order || b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
 <BaseLayout title="Projects" description="Project writeups: what was built, why, and what it cost.">

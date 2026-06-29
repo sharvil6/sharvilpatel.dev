@@ -6,7 +6,7 @@ tech: ["Astro"]
 role: "Solo project"
 repo: "https://github.com/sharvil6/sharvilpatel.dev"
 featured: true
-order: 3
+order: 4
 ---
 
 

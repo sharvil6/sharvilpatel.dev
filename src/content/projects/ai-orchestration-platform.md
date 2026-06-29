@@ -2,7 +2,7 @@
 title: "Agent Orchestration Platform - Building an AI Product Factory"
 summary: "A custom agent harness built for Dell bringing AI to the entirety of the product lifecycle"
 date: 2026-02-01
-tech: ["Go", "Kafka", "ClickHouse", "Grafana", "Terraform"]
+tech: [".NET", "React", "Applied AI"]
 role: "lead, developer"
 featured: true
 order: 1
