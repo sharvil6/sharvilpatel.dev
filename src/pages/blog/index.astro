@@ -14,7 +14,7 @@ const posts = (await getCollection('blog', ({ data }) => showDrafts || !data.dra
     <SectionHeading index="01" title="Writing" count={posts.length} />
     {
       posts.length === 0 ? (
-        <p class="empty mono-label">Writing coming soon. Subscribe via <a href="/rss.xml">RSS</a> to catch the first post.</p>
+        <p class="empty mono-label">Writing coming soon. Check back for the first post.</p>
       ) : (
         <ul class="posts">
           {posts.map((post) => (
@@ -66,6 +66,12 @@ const posts = (await getCollection('blog', ({ data }) => showDrafts || !data.dra
     border-top: var(--hairline);
   }
 
+  /* The section heading already draws a rule beneath it, so the first row's
+     top border would double it up. */
+  .posts li:first-child .post-link {
+    border-top: 0;
+  }
+
   .post-link time {
     color: var(--faint);
   }
@@ -73,7 +79,7 @@ const posts = (await getCollection('blog', ({ data }) => showDrafts || !data.dra
   .title {
     display: block;
     font-size: var(--text-lg);
-    font-weight: 600;
+    font-weight: var(--weight-semibold);
     line-height: 1.2;
     transition: color 0.2s var(--ease-out);
   }

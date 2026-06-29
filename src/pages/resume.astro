@@ -5,39 +5,69 @@ import SectionHeading from '../components/SectionHeading.astro';
 // Placeholder resume content — replace every entry with the real record.
 const experience = [
   {
-    company: 'Placeholder Corp',
-    title: 'Senior Software Engineer',
-    range: '2023 — Present',
-    location: 'Remote',
+    company: 'DELL',
+    title: 'Director - Applied AI',
+    range: '2026 — Present',
+    location: 'Austin, TX',
     bullets: [
-      'Led design and rollout of a realtime metrics pipeline ingesting 40k events/sec, cutting incident dashboard latency from 8s to 300ms.',
-      'Built shipit, a release automation CLI adopted by three teams; release cadence went from monthly to weekly.',
-      'Mentored two engineers to promotion; ran the team’s design-review rotation.',
+      'Building an AI orchestration platform on a custom agent harness',
+      'Started the Applied AI organization, operating like a startup within an enterprise framework'
     ],
   },
   {
-    company: 'Example Systems',
-    title: 'Software Engineer',
-    range: '2020 — 2023',
-    location: 'City, ST',
+    company: 'DELL',
+    title: 'Senior Engineering Manager - Dell Pro AI Studio',
+    range: '2024 — 2026',
+    location: 'Austin, TX',
     bullets: [
-      'Owned the billing reconciliation service (Go, Postgres); reduced unmatched transactions by 97%.',
-      'Introduced contract tests across 14 internal services, eliminating a class of integration regressions.',
-      'On-call rotation lead; halved mean time to resolution by rewriting the runbook system.',
+      'Drove Dell Pro AI Studio from POC to product launch in just 6 months, leading a global cross-functional team to deliver a first of its kind local AI inference developer framework for Dell AI PCs.',
+      'Balanced strategic leadership with hands-on building - defined MVP scope, made tradeoff and prioritization decisions, and maintained direct involvement in design and implementation by writing code, fixing bugs, and triaging issues alongside developers.',
+      'Served as the voice of the product to executives and partners (marketing, sales, support, CTO); featured at Dell Tech World as a flagship AI initiative.',
+      'Scaled and mentored a team of engineers including new grads and interns, fostering a culture of rapid iteration, technical rigor, and customer focus - building a startup-style "build and iterate" culture inside a Fortune 500.'
+    ],
+  },
+    {
+    company: 'DELL',
+    title: 'Engineering Manager - Dell Trusted Device',
+    range: '2021 — 2024',
+    location: 'Austin, TX',
+    bullets: [
+      'Led a cross-functional team delivering first cloud-based supply chain verification product, enabling customers to validate device integrity upon delivery and creating a recurring revenue stream and a first to market differentiator.',
+      'Owned full lifecycle delivery - balancing roadmap strategy with hands-on design and technical reviews',
+      'Parterned with product and customers to translate business needs into technical requirements, directly shaping roadmap priorities and security feature development',
+    ],
+  },
+    {
+    company: 'DELL',
+    title: 'Senior Software Engineer - Firmware Security Solutions',
+    range: '2019 — 2021',
+    location: 'Austin, TX',
+    bullets: [
+      'Spearheaded a complete overhaul of BIOS / Firmware code signing infrastructure, developing signing tools and strengthening CI/CD pipelines to reduce release risk and improve resilence of security updates',
+    ],
+  },
+    {
+    company: 'DELL',
+    title: 'Software Engineer - Firmware Security',
+    range: '2017 — 2019',
+    location: 'Austin, TX',
+    bullets: [
+      'Led a team of 5 engineers hardening a substantial portion of Dell BIOS code to support Intel Runtime BIOS Resilience and Microsoft SystemGuard; ultimately leading to Intel showcasing the Dell Latitude 7400 at Computex, calling it "the latest in commercial system design"',
     ],
   },
 ];
 
-const skills = [
-  { group: 'Languages', items: 'Go, Rust, TypeScript, Python, SQL' },
-  { group: 'Systems', items: 'Kafka, ClickHouse, Postgres, SQLite, Redis, S3' },
-  { group: 'Infra', items: 'Docker, Terraform, GitHub Actions, Cloudflare, AWS' },
+const beyondWork = [
+  'Certified Information Systems Security Professional (CISSP), September 2021',
+  'Achieved rank of Eagle Scout, March 2012',
+  'Developed a rudimentary computer vision system to improve medication adherence',
+  'On a quest to visit all 63 U.S. national parks.',
 ];
 
 const education = {
-  school: 'State University',
-  degree: 'B.S. Computer Science',
-  range: '2016 — 2020',
+  school: 'University of Michigan',
+  degree: 'B.S Computer Engineering, Minor in Business',
+  range: '2013 — 2017',
 };
 ---
 
@@ -77,36 +107,31 @@ const education = {
     </section>
 
     <section class="section">
-      <SectionHeading index="02" title="Projects" />
-      <p class="prose">
-        Selected personal projects with full writeups:
-        <a href="/projects/realtime-metrics-pipeline">Realtime Metrics Pipeline</a>,
-        <a href="/projects/self-hosted-photo-vault">Self-Hosted Photo Vault</a>, and
-        <a href="/projects/cli-release-tool">shipit</a>.
-      </p>
-    </section>
-
-    <section class="section">
-      <SectionHeading index="03" title="Skills" />
-      <dl class="skills">
-        {
-          skills.map((row) => (
-            <div class="skill-row">
-              <dt class="mono-label">{row.group}</dt>
-              <dd>{row.items}</dd>
-            </div>
-          ))
-        }
-      </dl>
-    </section>
-
-    <section class="section">
       <SectionHeading index="04" title="Education" />
       <div class="job-head">
         <h3>{education.degree} &middot; {education.school}</h3>
         <p class="mono-label">{education.range}</p>
       </div>
     </section>
+
+    <section class="section">
+      <SectionHeading index="02" title="Projects" />
+      <p class="prose">
+        Selected personal projects with full writeups:
+        <a href="/projects/ai-orchestration-platform">AI Orchestration Platform</a>,
+        <a href="/projects/hestia-recipe-share">Hestia</a>, and
+        <a href="/projects/ynab-tracking-account">YNAB Tracking Accounts</a>.
+      </p>
+    </section>
+
+    <section class="section">
+      <SectionHeading index="03" title="Beyond Work" />
+      <ul class="prose beyond-list">
+        {beyondWork.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+
+
   </div>
 </BaseLayout>
 
@@ -175,30 +200,12 @@ const education = {
     margin-block-start: var(--s1);
   }
 
-  .skills {
-    margin: 0;
+  .beyond-list {
+    padding-inline-start: 1.25em;
+    max-width: var(--measure);
   }
 
-  .skill-row {
-    display: grid;
-    grid-template-columns: 12ch 1fr;
-    gap: var(--s3);
-    padding-block: var(--s2);
-    border-bottom: var(--hairline);
-  }
-
-  .skill-row dt {
-    color: var(--muted);
-  }
-
-  .skill-row dd {
-    margin: 0;
-  }
-
-  @media (max-width: 45rem) {
-    .skill-row {
-      grid-template-columns: 1fr;
-      gap: var(--s1);
-    }
+  .beyond-list li + li {
+    margin-block-start: var(--s1);
   }
 </style>

@@ -16,9 +16,21 @@
   --line: oklch(89% 0.008 80); /* hairline rules, never an accent */
   --accent: oklch(52% 0.1 250); /* muted slate-blue, links + small marks only */
 
-  /* type — system stacks, no web fonts (perfect-Lighthouse) */
-  --font-sans: "Helvetica Neue", Helvetica, Arial, "Segoe UI", system-ui, sans-serif;
+  /* type — native UI sans, no web fonts (perfect-Lighthouse).
+     Each OS gets its best face: San Francisco on macOS/iOS, Segoe UI
+     (Variable on Win11) on Windows, Roboto on Android. Arial sits last
+     as a true fallback, never the first hit — earlier ordering shipped
+     Arial to every Windows visitor. */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui,
+    Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, "Cascadia Code", "SF Mono", Consolas, "Segoe UI Mono", monospace;
+
+  /* weight ramp — real, available weights only. System UI faces resolve
+     400/500/600 cleanly; non-variable fallbacks (Arial) snap 600 → bold.
+     Hierarchy leans on size + spacing, so no weight exceeds semibold. */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
 
   /* modular scale, committed 1.25 ratio from a 17px body */
   --text-xs: 0.75rem; /* 12 — captions, tags */
@@ -131,7 +143,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-weight: 640;
+  font-weight: var(--weight-semibold);
   line-height: 1.15;
   letter-spacing: -0.015em;
   text-wrap: balance;
@@ -139,7 +151,7 @@ h4 {
 
 .display {
   font-size: var(--text-display);
-  font-weight: 660;
+  font-weight: var(--weight-semibold);
   line-height: 1;
   letter-spacing: -0.03em;
 }
@@ -301,6 +313,15 @@ a {
   font-weight: 400;
   font-size: var(--text-xs);
   color: var(--muted);
+}
+
+/* On project pages the prev/next nav sits directly above the footer, each with
+   its own top hairline — that stacks two rules with a gap between them. Let the
+   nav's rule serve as the single separator so the nav and footer read as one
+   end-matter zone. */
+main:has(> .pagination:last-child) + footer {
+  margin-block-start: 0;
+  border-top: 0;
 }
 
 /* ---------- motion: scroll reveal + page transitions ---------- */
