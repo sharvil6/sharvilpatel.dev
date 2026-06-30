@@ -5,8 +5,9 @@ date: 2026-1-30
 tech: ["Python", "React", "GitHub Actions"]
 role: "Solo project"
 repo: "https://github.com/sharvil6/hestia"
+demo: "https://hestia-demo.sharvilpatel.dev"
 featured: true
-order: 3
+order: 2
 ---
 
 

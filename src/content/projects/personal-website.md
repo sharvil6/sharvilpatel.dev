@@ -12,25 +12,24 @@ order: 4
 
 ## Problem
 
-This was an old project that I used to try and learn Rust. I was curious about all I'd heard about how much it's conventions improved upon C++ and made it easier to debug and safer. The problem set was simple - I wanted to automate some math I was doing on a monthly basis to update the value of investment accounts within my budgeting app, wit the potential in the future to scrape the data automatically from the financial websites themselves.
+My personal website needed a refresh, I hadn't touched it in a while and I wanted to try and use some of the frontier model capabilities that advertised long chain of thought problem solving.
 
 ## Constraints
 
-- Use Rust to learn Rust
-- Pre AI coding assistants
-- Leverage the newly released YNAB API
+- Use frontier models (Fable) to one-shot massive refactors and features
+- Keep the frontend frameworks simple, as close to vanilla as possible to maximize performance
+- Make the simplicity beautiful, don't overdo the slop
 
 ## Approach
 
-My first implementation was a complete wreck. I had bad, spaghetti code that wasn't quite working the way I expected and hadnt actually taught me Rust. I basically scrapped that attempt and started by watching some excellent lecture style YouTube videos by Jon Gs. That got me unblocked and I built a functional CLI that delivered on the MVP I wanted. 
-
-Now I wonder how I would bulid this app today. AI means I probably could one shot the functionality in this app in basically any language. But if I wanted to learn a langauge itself, how would I go about appraoching that? Would I hand-write code and use AI to help me when I get stuck? Intuitively it feels useful to have a depth of knowledge of programming languages to enhance debugging and potentially even system design, but I'm not sure. Maybe simply using AI to guide the delivery of enough projects and asking agents to explain sections of code is good enough? 
+I used my limited-time access to Fable to try and one-shot the prompt to code. It was interesting to see the model get really stuck on some basic NPM dependency resolutions. It must have been something stale in my environment. This underscored the importance of observability - with model intelligence obviously comes model cost and burning tokens in a longer chain of thought that is completely unsupervised is a risk. I want the autonomy, but I want some degree of oversight so my loops dont get caught on things that easily solvable - that's not where I want the frontier of intelligence applied. At this point I wasn't too caught up in trying to learn a new frontend framework, but was a lot more interested in how to continue chasing autonomy or moments of intrigue when using the fronter coding harnesses / models.
 
 ## Outcome
 
-- Use the CLI every month still!
+- Website published
+- Scalable approach that lets me build in moments of frontend beauty without distracting from the content
 
 
 ## What I'd do differently
 
-Add async account updates. Build a TUI so that the update experience feels beautiful. Scrape the data from a screenshot (since scraping financial institutions directly is a nightmare)
+Use other frontier model capabilities to see if they perform better in a one-shot moment. Potentially spend one cycle providing the harness with something to check work, then set off a one-shot to see if I can help facilitate the loop.
