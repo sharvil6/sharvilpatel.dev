@@ -23,12 +23,16 @@ const { project, prev, next } = Astro.props;
 const { Content } = await render(project);
 const { title, summary, date, tech, role, repo, demo } = project.data;
 
+const links = [
+  ...(repo ? [{ label: 'GitHub', href: repo }] : []),
+  ...(demo ? [{ label: 'Live demo', href: demo }] : []),
+];
+
 const meta = [
   { label: 'Date', value: formatDate(date) },
   ...(role ? [{ label: 'Role', value: role }] : []),
   { label: 'Stack', value: tech.join(' / ') },
-  ...(repo ? [{ label: 'Source', value: repo.replace('https://', ''), href: repo }] : []),
-  ...(demo ? [{ label: 'Demo', value: demo.replace('https://', ''), href: demo }] : []),
+  ...(links.length ? [{ label: 'Links', links }] : []),
 ];
 ---
 

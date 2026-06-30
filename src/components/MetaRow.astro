@@ -1,8 +1,14 @@
 ---
+interface MetaLink {
+  label: string;
+  href: string;
+}
+
 interface MetaItem {
   label: string;
-  value: string;
+  value?: string;
   href?: string;
+  links?: MetaLink[];
 }
 
 interface Props {
@@ -18,7 +24,15 @@ const { items } = Astro.props;
       <div class="pair">
         <dt class="mono-label">{item.label}</dt>
         <dd>
-          {item.href ? (
+          {item.links ? (
+            <span class="links">
+              {item.links.map((link) => (
+                <a href={link.href} target="_blank" rel="noopener noreferrer">
+                  {link.label} <span class="arrow" aria-hidden="true">&#8599;</span>
+                </a>
+              ))}
+            </span>
+          ) : item.href ? (
             <a href={item.href}>{item.value}</a>
           ) : (
             item.value
@@ -67,5 +81,20 @@ const { items } = Astro.props;
 
   dd a:hover {
     text-decoration-color: var(--accent);
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .links a {
+    width: fit-content;
+  }
+
+  .arrow {
+    font-size: 0.85em;
+    opacity: 0.6;
   }
 </style>
