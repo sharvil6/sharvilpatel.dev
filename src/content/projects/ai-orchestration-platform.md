@@ -28,10 +28,10 @@ We've started identifying unique opportunities to extend our harness to the org-
 
 We quickly found that as we accelerate segments of our organization, new friction points emerge. For example, code generation was moving ridiculously fast and PRs were starting to pile up. We figured we could solve this problem with AI. We brought our agents to the tools where the context lived, deploying PR bots that performed cursory reviews of every PR that was opened and created a new control surface that allowed kicking off background agents from within the PR itself. Now that we're working this way, I can't imagine developing in the old way. It's actually ridiculous that developers have to receive PR feedback, check out the old branch, make the code change, push the branch, and repeat this cycle til the feedback stops. That's a ridiculous amount of context switching. Now, from within the PR itself, all comments(big or small) can be addressed by our background agents. Letting our developers focus on their more innovative work. We also started running into merge conflicts as the velocity of our team increased. These background agents turned out to be extremely adept at resovling merge conflicts for us, again removing a source of friction in our factory. 
 
-We grounded our approach in industry baselines. A few publications that have been particularly thought-provoking:
-- Stripe Minions
-- Ramp
-- Satya Nadella
+We grounded our approach in industry baselines. A few publications that recently have been particularly thought-provoking:
+- [Stripe Minions](https://stripe.dev/blog/minions-stripes-one-shot-end-to-end-coding-agents)
+- [Ramp](https://www.linkedin.com/pulse/we-built-every-employee-ramp-own-ai-coworker-sebastien-goddijn-sfupe/)
+- [A frontier without an ecosystem is not stable](https://x.com/i/article/2065582894790365184)
 
 ## Outcome
 - Platform has extended agents to left of code and right of code
