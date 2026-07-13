@@ -156,7 +156,7 @@ The component vocabulary is deliberately small: links, labels, rows, and one gho
 ### Navigation
 
 - **Header**: identity mark ("SP" plus an accent dot that hops on hover) at left; mono nav links at right in Muted Ink. The active page gets Warm Ink text and a 1px accent underline. Baseline-aligned, wraps gracefully.
-- **Contents nav** (signature): on blog and project pages, a sticky "Contents" list in the right margin at viewports 64rem and up, built from h2/h3 headings. Entries are Muted Ink; the section being read is Warm Ink (via a tiny inline scroll spy); hover is accent. Indented one step for h3. It renders only when a page has two or more headings, and disappears below 64rem rather than cramming in.
+- **Contents nav** (signature): on blog and project pages, a sticky "Contents" list in the right margin at viewports 64rem and up, built from h2/h3 headings. Entries are Muted Ink; the section being read is Warm Ink (via a tiny inline scroll spy) and carries the mark's closing-period dot: a 0.28em Ink-Wash Blue dot trailing the entry like a period, fading and settling in with the standard ease. Hovering any entry turns it accent and echoes the mark exactly: the dot appears and hops up 0.28em, including on the current entry, whose resting dot lifts the same way. h3s indent one step. It renders only when a page has two or more headings, and disappears below 64rem rather than cramming in.
 
 ### Section Heading
 

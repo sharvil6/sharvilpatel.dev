@@ -127,4 +127,33 @@ const show = items.length >= 2;
   a[aria-current] {
     color: var(--ink);
   }
+
+  /* The mark's closing-period dot lands on the section being read.
+     Always occupies space so activation never reflows the text. */
+  a::after {
+    content: '';
+    display: inline-block;
+    width: 0.28em;
+    height: 0.28em;
+    margin-inline-start: 0.14em;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0;
+    transform: translateY(0.12em);
+    transition:
+      opacity 0.25s var(--ease-out),
+      transform 0.25s var(--ease-out);
+  }
+
+  a[aria-current]::after {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Hover echoes the mark exactly: the dot appears and hops, even on
+     the current entry (this rule wins by source order). */
+  a:hover::after {
+    opacity: 1;
+    transform: translateY(-0.28em);
+  }
 </style>
