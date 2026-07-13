@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Toc from '../../components/Toc.astro';
 import { formatDate, isoDate } from '../../lib/format';
 
 export async function getStaticPaths() {
@@ -13,7 +14,7 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
 const { title, description, pubDate, tags } = post.data;
 ---
 
@@ -27,8 +28,11 @@ const { title, description, pubDate, tags } = post.data;
       </p>
       <h1>{title}</h1>
     </header>
-    <div class="prose">
-      <Content />
+    <div class="post-body">
+      <div class="prose">
+        <Content />
+      </div>
+      <Toc headings={headings} />
     </div>
   </article>
 </BaseLayout>
@@ -57,7 +61,4 @@ const { title, description, pubDate, tags } = post.data;
     max-width: 24ch;
   }
 
-  .prose {
-    padding-block: var(--s6) var(--s12);
-  }
 </style>

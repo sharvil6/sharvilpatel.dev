@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import MetaRow from '../../components/MetaRow.astro';
+import Toc from '../../components/Toc.astro';
 import { formatDate } from '../../lib/format';
 
 export async function getStaticPaths() {
@@ -20,7 +21,7 @@ export async function getStaticPaths() {
 }
 
 const { project, prev, next } = Astro.props;
-const { Content } = await render(project);
+const { Content, headings } = await render(project);
 const { title, summary, date, tech, role, repo, demo } = project.data;
 
 const links = [
@@ -44,8 +45,11 @@ const meta = [
       <p class="summary">{summary}</p>
     </header>
     <MetaRow items={meta} />
-    <div class="prose">
-      <Content />
+    <div class="post-body">
+      <div class="prose">
+        <Content />
+      </div>
+      <Toc headings={headings} />
     </div>
   </article>
 
@@ -93,9 +97,6 @@ const meta = [
     color: var(--muted);
   }
 
-  .prose {
-    padding-block: var(--s6) var(--s12);
-  }
 
   .pagination {
     display: flex;

@@ -1,6 +1,6 @@
 # sharvilpatel.dev
 
-Personal portfolio and recruiting site. Static Astro, zero client-side JavaScript, Swiss/brutalist-lite design system.
+Personal portfolio and recruiting site. Static Astro, minimal client-side JavaScript (no bundles, only tiny inline enhancements), editorial-calm minimalist design system.
 
 ## Commands
 
@@ -42,4 +42,4 @@ Security and cache headers are in `public/_headers` and apply automatically on P
 
 ## Design system
 
-Everything lives in `src/styles/global.css` (tokens + base) plus scoped styles per component. Rules of the house: OKLCH colors, one accent, sharp edges, no shadows, mono uppercase metadata, ruled numbered sections, and the build stays JavaScript-free (check `dist/` for `.js` files after building).
+Everything lives in `src/styles/global.css` (tokens + base) plus scoped styles per component. Rules of the house: OKLCH colors, one quiet accent, whitespace over rules, no shadows, mono reserved for metadata, and JavaScript stays minimal — only small `is:inline` enhancement scripts that pages work without, never a separate bundle (check `dist/` for `.js` files after building).

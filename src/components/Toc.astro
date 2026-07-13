@@ -1,0 +1,130 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+
+// h2/h3 only: h1 is the page title, deeper levels are noise in a margin nav.
+const items = Astro.props.headings.filter((h) => h.depth === 2 || h.depth === 3);
+const show = items.length >= 2;
+---
+
+{
+  show && (
+    <nav class="toc no-print" aria-label="Contents" data-toc>
+      <p class="mono-label toc-title" aria-hidden="true">
+        Contents
+      </p>
+      <ol>
+        {items.map((h) => (
+          <li class={h.depth === 3 ? 'sub' : undefined}>
+            <a href={`#${h.slug}`}>{h.text}</a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )
+}
+
+{
+  show && (
+    <script is:inline>
+      // Scroll spy: mark the TOC link for the last heading above the reading
+      // line. Pure enhancement — without JS the anchor links still work.
+      (() => {
+        const toc = document.querySelector('[data-toc]');
+        if (!toc) return;
+        const links = [...toc.querySelectorAll('a[href^="#"]')];
+        const heads = links
+          .map((a) => document.getElementById(decodeURIComponent(a.hash.slice(1))))
+          .filter(Boolean);
+        if (heads.length !== links.length) return;
+
+        let active = null;
+        const update = () => {
+          const line = innerHeight * 0.25;
+          let i = heads.length - 1;
+          while (i >= 0 && heads[i].getBoundingClientRect().top > line) i--;
+          // Pin the last entry once the page bottoms out, so short final
+          // sections can still register as current.
+          if (innerHeight + scrollY >= document.documentElement.scrollHeight - 2) {
+            i = heads.length - 1;
+          }
+          const next = i >= 0 ? links[i] : null;
+          if (next === active) return;
+          if (active) active.removeAttribute('aria-current');
+          if (next) next.setAttribute('aria-current', 'true');
+          active = next;
+        };
+
+        let ticking = false;
+        const onScroll = () => {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(() => {
+            ticking = false;
+            update();
+          });
+        };
+        addEventListener('scroll', onScroll, { passive: true });
+        addEventListener('resize', onScroll, { passive: true });
+        update();
+      })();
+    </script>
+  )
+}
+
+<style>
+  /* The margin nav only exists where the frame leaves room for it;
+     below that the anchor links add nothing a scroll can't do. */
+  .toc {
+    display: none;
+  }
+
+  @media (min-width: 64rem) {
+    .toc {
+      display: block;
+      position: sticky;
+      top: var(--s6);
+      align-self: start;
+      max-height: calc(100vh - var(--s12));
+      overflow-y: auto;
+      font-size: var(--text-sm);
+      line-height: 1.45;
+    }
+  }
+
+  .toc-title {
+    font-size: var(--text-xs);
+    color: var(--faint);
+    margin-block-end: var(--s2);
+  }
+
+  ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li + li {
+    margin-block-start: 0.45em;
+  }
+
+  .sub {
+    padding-inline-start: var(--s2);
+  }
+
+  a {
+    color: var(--muted);
+    transition: color 0.2s var(--ease-out);
+  }
+
+  a:hover {
+    color: var(--accent);
+  }
+
+  a[aria-current] {
+    color: var(--ink);
+  }
+</style>

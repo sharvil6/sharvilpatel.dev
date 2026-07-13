@@ -12,7 +12,7 @@ order: 3
 
 ## Problem
 
-This was an old project that I used to try and learn Rust. I was curious about all I'd heard about how much it's conventions improved upon C++ and made it easier to debug and safer. The problem set was simple - I wanted to automate some math I was doing on a monthly basis to update the value of investment accounts within my budgeting app, wit the potential in the future to scrape the data automatically from the financial websites themselves.
+This was an old project that I used to try and learn Rust. I was curious about all I'd heard about how much it's conventions improved upon C++ and made it easier to debug and safer. The problem set was simple - I wanted to automate some math I was doing on a monthly basis to update the value of investment accounts within my budgeting app, with the potential in the future to scrape the data automatically from the financial websites themselves.
 
 ## Constraints
 
@@ -22,9 +22,9 @@ This was an old project that I used to try and learn Rust. I was curious about a
 
 ## Approach
 
-My first implementation was a complete wreck. I had bad, spaghetti code that wasn't quite working the way I expected and hadnt actually taught me Rust. I basically scrapped that attempt and started by watching some excellent lecture style YouTube videos by Jon Gs. That got me unblocked and I built a functional CLI that delivered on the MVP I wanted. 
+My first implementation was a complete wreck. I had bad, spaghetti code that wasn't quite working the way I expected and hadn't actually taught me Rust. I basically scrapped that attempt and started by watching some excellent lecture style YouTube videos by Jon Gs. That got me unblocked and I built a functional CLI that delivered on the MVP I wanted. 
 
-Now I wonder how I would bulid this app today. AI means I probably could one shot the functionality in this app in basically any language. But if I wanted to learn a langauge itself, how would I go about appraoching that? Would I hand-write code and use AI to help me when I get stuck? Intuitively it feels useful to have a depth of knowledge of programming languages to enhance debugging and potentially even system design, but I'm not sure. Maybe simply using AI to guide the delivery of enough projects and asking agents to explain sections of code is good enough? 
+Now I wonder how I would build this app today. AI means I probably could one shot the functionality in this app in basically any language. But if I wanted to learn a language itself, how would I go about approaching that? Would I hand-write code and use AI to help me when I get stuck? Intuitively it feels useful to have a depth of knowledge of programming languages to enhance debugging and potentially even system design, but I'm not sure. Maybe simply using AI to guide the delivery of enough projects and asking agents to explain sections of code is good enough? 
 
 ## Outcome
 

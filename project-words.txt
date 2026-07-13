@@ -1,0 +1,11 @@
+# cspell custom dictionary — add correct-but-unknown words here (proper nouns, tech terms).
+# One word per line. cspell adds to this automatically when you use "add to dictionary".
+YNAB
+evals
+oklch
+hyperscalers
+commoditization
+incentivizes
+synergizes
+healthcheck
+Passwordless

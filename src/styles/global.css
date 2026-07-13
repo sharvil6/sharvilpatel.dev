@@ -2,7 +2,7 @@
    sharvilpatel.dev — design system
    Editorial-calm minimalism: whitespace carries the page,
    refined system sans, mono reserved for true metadata,
-   one quiet accent. Zero client-side JS; the CSS does the work.
+   one quiet accent. Minimal client-side JS; the CSS does the work.
    ============================================================ */
 
 /* ---------- tokens ---------- */
@@ -89,6 +89,13 @@
 *::after {
   box-sizing: border-box;
   margin: 0;
+}
+
+/* in-page anchor jumps (contents nav); reduced-motion users are exempt */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 html {
@@ -227,6 +234,21 @@ a {
 
 /* ---------- prose (rendered markdown) ---------- */
 
+/* Article body on blog/project pages: prose plus an optional contents nav.
+   At wide viewports the nav lives in the margin the measure already leaves
+   free, so the reading column never moves. */
+.post-body {
+  padding-block: var(--s6) var(--s12);
+}
+
+@media (min-width: 64rem) {
+  .post-body {
+    display: grid;
+    grid-template-columns: minmax(0, var(--measure)) minmax(0, 1fr);
+    column-gap: var(--s6);
+  }
+}
+
 .prose {
   max-width: var(--measure);
 }
@@ -247,6 +269,11 @@ a {
 .prose h3 {
   font-size: var(--text-lg);
   margin-block-start: var(--s6);
+}
+
+/* Contents-nav jumps land with air above the heading */
+.prose :is(h2, h3)[id] {
+  scroll-margin-block-start: var(--s4);
 }
 
 .prose ul,

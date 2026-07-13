@@ -1,0 +1,217 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-13T00:00:00Z",
+  "title": "Design System: sharvilpatel.dev",
+  "extensions": {
+    "colorMeta": {
+      "warm-ink": {
+        "role": "neutral",
+        "displayName": "Warm Ink",
+        "canonical": "oklch(23% 0.012 70)",
+        "dark": "oklch(92% 0.01 85)",
+        "tonalRamp": [
+          "oklch(15% 0.012 70)",
+          "oklch(26% 0.012 70)",
+          "oklch(38% 0.012 70)",
+          "oklch(49% 0.012 70)",
+          "oklch(61% 0.012 70)",
+          "oklch(72% 0.01 70)",
+          "oklch(84% 0.008 70)",
+          "oklch(95% 0.006 70)"
+        ]
+      },
+      "warm-paper": {
+        "role": "neutral",
+        "displayName": "Warm Paper",
+        "canonical": "oklch(98% 0.008 85)",
+        "dark": "oklch(18% 0.008 80)",
+        "tonalRamp": [
+          "oklch(15% 0.008 85)",
+          "oklch(26% 0.008 85)",
+          "oklch(38% 0.008 85)",
+          "oklch(49% 0.008 85)",
+          "oklch(61% 0.008 85)",
+          "oklch(72% 0.008 85)",
+          "oklch(84% 0.008 85)",
+          "oklch(96% 0.008 85)"
+        ]
+      },
+      "muted-ink": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "canonical": "oklch(52% 0.01 70)",
+        "dark": "oklch(68% 0.012 80)",
+        "tonalRamp": [
+          "oklch(15% 0.01 70)",
+          "oklch(26% 0.01 70)",
+          "oklch(38% 0.01 70)",
+          "oklch(49% 0.01 70)",
+          "oklch(61% 0.01 70)",
+          "oklch(72% 0.01 70)",
+          "oklch(84% 0.008 70)",
+          "oklch(95% 0.006 70)"
+        ]
+      },
+      "faint-ink": {
+        "role": "neutral",
+        "displayName": "Faint Ink",
+        "canonical": "oklch(55% 0.008 75)",
+        "dark": "oklch(62% 0.01 80)",
+        "tonalRamp": [
+          "oklch(15% 0.008 75)",
+          "oklch(26% 0.008 75)",
+          "oklch(38% 0.008 75)",
+          "oklch(49% 0.008 75)",
+          "oklch(61% 0.008 75)",
+          "oklch(72% 0.008 75)",
+          "oklch(84% 0.008 75)",
+          "oklch(95% 0.006 75)"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "oklch(89% 0.008 80)",
+        "dark": "oklch(30% 0.008 80)",
+        "tonalRamp": [
+          "oklch(15% 0.008 80)",
+          "oklch(26% 0.008 80)",
+          "oklch(38% 0.008 80)",
+          "oklch(49% 0.008 80)",
+          "oklch(61% 0.008 80)",
+          "oklch(72% 0.008 80)",
+          "oklch(84% 0.008 80)",
+          "oklch(95% 0.006 80)"
+        ]
+      },
+      "ink-wash-blue": {
+        "role": "primary",
+        "displayName": "Ink-Wash Blue",
+        "canonical": "oklch(52% 0.1 250)",
+        "dark": "oklch(72% 0.11 245)",
+        "tonalRamp": [
+          "oklch(15% 0.06 250)",
+          "oklch(26% 0.08 250)",
+          "oklch(38% 0.1 250)",
+          "oklch(49% 0.1 250)",
+          "oklch(61% 0.1 248)",
+          "oklch(72% 0.11 245)",
+          "oklch(84% 0.07 245)",
+          "oklch(95% 0.03 245)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The name on the home page as an oversize word. Nowhere else." },
+      "headline": { "displayName": "Headline", "purpose": "Page h1, one per page." },
+      "title": { "displayName": "Title", "purpose": "h2 and project/post titles in lists." },
+      "body": { "displayName": "Body", "purpose": "All reading text, capped at a 68ch measure." },
+      "label": { "displayName": "Label (mono)", "purpose": "True metadata only: dates, stacks, nav, meta keys, counts. Tabular numerals." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "The only easing curve. State changes run 0.2s to 0.25s." },
+      { "name": "scroll-reveal", "value": "animation-timeline: view(); animation-range: entry 0% cover 18%", "purpose": "Sections ease up and in as they enter the viewport. Pure CSS, guarded by @supports and prefers-reduced-motion." },
+      { "name": "page-fade", "value": "@view-transition { navigation: auto }", "purpose": "Cross-document fades between pages. Disabled under reduced motion." }
+    ],
+    "breakpoints": [
+      { "name": "frame-max", "value": "60rem", "purpose": "The page column's maximum width." },
+      { "name": "contents-nav", "value": "64rem", "purpose": "Minimum viewport for the sticky contents nav in the article margin." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Content Link",
+      "kind": "custom",
+      "refersTo": "content-link",
+      "description": "Prose link: accent text with a quiet underline that firms on hover.",
+      "html": "<p class=\"ds-prose\">Project writeups are the centerpiece; read <a class=\"ds-content-link\" href=\"#\">the hestia writeup</a> end to end.</p>",
+      "css": ".ds-prose { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto, sans-serif; font-size: 1.0625rem; line-height: 1.6; color: var(--ink, oklch(23% 0.012 70)); } .ds-content-link { color: var(--accent, oklch(52% 0.1 250)); text-decoration: underline; text-decoration-color: color-mix(in oklch, var(--accent, oklch(52% 0.1 250)) 35%, transparent); text-decoration-thickness: 1px; text-underline-offset: 3px; transition: text-decoration-color 0.2s cubic-bezier(0.22, 1, 0.36, 1); } .ds-content-link:hover { text-decoration-color: var(--accent, oklch(52% 0.1 250)); } .ds-content-link:focus-visible { outline: 2px solid var(--accent, oklch(52% 0.1 250)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Header Nav",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Mono nav links; the active page gets ink text and a 1px accent underline.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link ds-active\" href=\"#\">Projects</a><a class=\"ds-nav-link\" href=\"#\">Resume</a><a class=\"ds-nav-link\" href=\"#\">Writing</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 2rem; } .ds-nav-link { font-family: ui-monospace, 'Cascadia Code', 'SF Mono', Consolas, monospace; font-size: 0.875rem; color: var(--muted, oklch(52% 0.01 70)); text-decoration: none; padding-bottom: 2px; border-bottom: 1px solid transparent; transition: color 0.2s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.2s cubic-bezier(0.22, 1, 0.36, 1); } .ds-nav-link:hover { color: var(--ink, oklch(23% 0.012 70)); } .ds-nav-link.ds-active { color: var(--ink, oklch(23% 0.012 70)); border-bottom-color: var(--accent, oklch(52% 0.1 250)); }"
+    },
+    {
+      "name": "Theme Toggle",
+      "kind": "button",
+      "refersTo": "nav-link",
+      "description": "The site's only button: a ghost icon button, muted stroke warming to ink on hover.",
+      "html": "<button class=\"ds-theme-toggle\" type=\"button\" aria-label=\"Switch color theme\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" width=\"18\" height=\"18\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4\"/></svg></button>",
+      "css": ".ds-theme-toggle { display: inline-flex; align-items: center; justify-content: center; padding: 0; background: none; border: 0; color: var(--muted, oklch(52% 0.01 70)); cursor: pointer; transition: color 0.2s cubic-bezier(0.22, 1, 0.36, 1); } .ds-theme-toggle:hover { color: var(--ink, oklch(23% 0.012 70)); } .ds-theme-toggle:focus-visible { outline: 2px solid var(--accent, oklch(52% 0.1 250)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Section Heading",
+      "kind": "custom",
+      "refersTo": "mono-label",
+      "description": "Mono label, hairline stretching to fill, optional mono count. Opens list sections.",
+      "html": "<div class=\"ds-section-heading\"><h2 class=\"ds-sh-title\">Projects</h2><span class=\"ds-sh-rule\" aria-hidden=\"true\"></span><span class=\"ds-sh-count\">04</span></div>",
+      "css": ".ds-section-heading { display: flex; align-items: center; gap: 1.5rem; min-width: 18rem; } .ds-sh-title, .ds-sh-count { font-family: ui-monospace, 'Cascadia Code', 'SF Mono', Consolas, monospace; font-size: 0.875rem; font-weight: 400; color: var(--muted, oklch(52% 0.01 70)); margin: 0; flex: none; font-variant-numeric: tabular-nums; } .ds-sh-rule { flex: 1; height: 1px; background: var(--line, oklch(89% 0.008 80)); }"
+    },
+    {
+      "name": "Project Row",
+      "kind": "custom",
+      "refersTo": "content-link",
+      "description": "The centerpiece list item: semibold title with a hover arrow, mono year, muted summary, faint tags. Hairlines, never boxes.",
+      "html": "<article class=\"ds-row\"><a class=\"ds-row-link\" href=\"#\"><div class=\"ds-row-head\"><h3 class=\"ds-row-title\">hestia: Sharing Family Recipes<span class=\"ds-row-go\" aria-hidden=\"true\">&rarr;</span></h3><span class=\"ds-row-year\">2025</span></div><p class=\"ds-row-summary\">A private recipe site for family, with scraping, manual entry, and passwordless login.</p></a><ul class=\"ds-row-tags\"><li>Astro</li><li>TypeScript</li><li>Cloudflare</li></ul></article>",
+      "css": ".ds-row { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto, sans-serif; padding: 2rem 0; border-top: 1px solid var(--line, oklch(89% 0.008 80)); max-width: 40rem; } .ds-row-link { display: block; text-decoration: none; color: inherit; } .ds-row-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem; } .ds-row-title { font-size: 1.625rem; font-weight: 600; letter-spacing: -0.015em; line-height: 1.15; margin: 0; color: var(--ink, oklch(23% 0.012 70)); transition: color 0.2s cubic-bezier(0.22, 1, 0.36, 1); } .ds-row-go { display: inline-block; margin-left: 0.4em; color: var(--accent, oklch(52% 0.1 250)); opacity: 0; transform: translateX(-0.25em); transition: opacity 0.25s cubic-bezier(0.22, 1, 0.36, 1), transform 0.25s cubic-bezier(0.22, 1, 0.36, 1); } .ds-row-link:hover .ds-row-title, .ds-row-link:focus-visible .ds-row-title { color: var(--accent, oklch(52% 0.1 250)); } .ds-row-link:hover .ds-row-go, .ds-row-link:focus-visible .ds-row-go { opacity: 1; transform: translateX(0); } .ds-row-year { font-family: ui-monospace, 'Cascadia Code', 'SF Mono', Consolas, monospace; font-size: 0.875rem; color: var(--muted, oklch(52% 0.01 70)); flex: none; } .ds-row-summary { margin: 0.5rem 0 0; font-size: 1.0625rem; line-height: 1.6; color: var(--muted, oklch(52% 0.01 70)); } .ds-row-tags { list-style: none; margin: 1rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 1rem; font-family: ui-monospace, 'Cascadia Code', 'SF Mono', Consolas, monospace; font-size: 0.75rem; color: var(--faint, oklch(55% 0.008 75)); } .ds-row-tags li + li::before { content: \"\\00B7\"; margin-right: 1rem; color: var(--line, oklch(89% 0.008 80)); }"
+    },
+    {
+      "name": "Meta Row",
+      "kind": "custom",
+      "refersTo": "mono-label",
+      "description": "Definition-list grid bounded by hairlines: faint mono keys, ink mono values, outward arrows on external links.",
+      "html": "<dl class=\"ds-meta\"><div class=\"ds-meta-pair\"><dt>Date</dt><dd>June 2025</dd></div><div class=\"ds-meta-pair\"><dt>Stack</dt><dd>Astro / TypeScript</dd></div><div class=\"ds-meta-pair\"><dt>Links</dt><dd><a href=\"#\">GitHub <span class=\"ds-meta-arrow\" aria-hidden=\"true\">&#8599;</span></a></dd></div></dl>",
+      "css": ".ds-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 1.5rem 2rem; padding: 2rem 0; border-top: 1px solid var(--line, oklch(89% 0.008 80)); border-bottom: 1px solid var(--line, oklch(89% 0.008 80)); margin: 0; min-width: 24rem; } .ds-meta-pair { display: flex; flex-direction: column; gap: 0.25rem; } .ds-meta dt { font-family: ui-monospace, 'Cascadia Code', 'SF Mono', Consolas, monospace; font-size: 0.75rem; color: var(--faint, oklch(55% 0.008 75)); } .ds-meta dd { margin: 0; font-family: ui-monospace, 'Cascadia Code', 'SF Mono', Consolas, monospace; font-size: 0.875rem; color: var(--ink, oklch(23% 0.012 70)); } .ds-meta dd a { color: var(--accent, oklch(52% 0.1 250)); text-decoration: underline; text-decoration-color: color-mix(in oklch, var(--accent, oklch(52% 0.1 250)) 35%, transparent); text-underline-offset: 3px; transition: text-decoration-color 0.2s cubic-bezier(0.22, 1, 0.36, 1); } .ds-meta dd a:hover { text-decoration-color: var(--accent, oklch(52% 0.1 250)); } .ds-meta-arrow { font-size: 0.85em; opacity: 0.6; }"
+    },
+    {
+      "name": "Contents Nav",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Signature: sticky margin nav on articles. Muted entries, ink for the section being read, accent on hover, h3s indented.",
+      "html": "<nav class=\"ds-toc\" aria-label=\"Contents\"><p class=\"ds-toc-title\">Contents</p><ol><li><a href=\"#\">Problem</a></li><li><a href=\"#\">Constraints</a></li><li><a class=\"ds-current\" href=\"#\" aria-current=\"true\">Approach</a></li><li class=\"ds-toc-sub\"><a href=\"#\">The control planes</a></li><li><a href=\"#\">Outcome</a></li></ol></nav>",
+      "css": ".ds-toc { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto, sans-serif; font-size: 0.875rem; line-height: 1.45; min-width: 12rem; } .ds-toc-title { font-family: ui-monospace, 'Cascadia Code', 'SF Mono', Consolas, monospace; font-size: 0.75rem; color: var(--faint, oklch(55% 0.008 75)); margin: 0 0 1rem; } .ds-toc ol { list-style: none; margin: 0; padding: 0; } .ds-toc li + li { margin-top: 0.45em; } .ds-toc-sub { padding-left: 1rem; } .ds-toc a { color: var(--muted, oklch(52% 0.01 70)); text-decoration: none; transition: color 0.2s cubic-bezier(0.22, 1, 0.36, 1); } .ds-toc a:hover { color: var(--accent, oklch(52% 0.1 250)); } .ds-toc a.ds-current { color: var(--ink, oklch(23% 0.012 70)); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Quiet Page",
+    "overview": "This site reads like a well-set page of print: warm paper, dark ink, generous margins, and marginalia that never interrupts the text. Whitespace carries the page. Hierarchy is built from type scale and air, not from boxes, rules, or color blocks. There is one reading column, one quiet accent, and nothing on screen that is not content or the quiet structure serving it. The restraint is the statement. The system explicitly rejects its own history and its category's defaults: it is not the Swiss/brutalist treatment it replaced, and it is not a developer-portfolio template. Light by default with a warm-tinted dark scheme, never the dark-mode hacker aesthetic. Interactions are calm and confident: small, exact state changes that assert themselves without ever performing.",
+    "keyCharacteristics": [
+      "Warm-tinted neutrals everywhere; pure black and pure white are forbidden.",
+      "One accent (Ink-Wash Blue) on well under 10% of any screen: links and small marks only.",
+      "Monospace is reserved for true metadata; the reading voice is a refined system sans.",
+      "Depth comes from whitespace and 1px hairlines, never shadows.",
+      "Static HTML with near-zero JavaScript; speed and accessibility are brand attributes."
+    ],
+    "rules": [
+      { "name": "The One Voice Rule", "body": "Ink-Wash Blue appears on less than 10% of any screen, and only on links and small marks. Its rarity is the point. If a second accent seems necessary, the layout is wrong.", "section": "colors" },
+      { "name": "The Tinted Neutral Rule", "body": "Every neutral carries a whisper of warmth (chroma 0.005 to 0.012, hue 70 to 85). Pure #000 and #fff are prohibited everywhere except print styles.", "section": "colors" },
+      { "name": "The Mono-Means-Metadata Rule", "body": "Monospace marks true metadata only: dates, stacks, labels, navigation, counts. It never touches body prose.", "section": "typography" },
+      { "name": "The Measure Rule", "body": "Reading text never exceeds 68ch. The page column caps at 60rem. Margins stay mostly empty; the contents nav is the only thing allowed to live there.", "section": "typography" },
+      { "name": "The Hairline Rule", "body": "Rules are 1px, colored Hairline, and horizontal. Never thicker, never accent-colored, and never vertical stripes on the edge of a block.", "section": "elevation" },
+      { "name": "The Single Sheet Rule", "body": "No cards, no boxed containers, no elevated surfaces. Content sits directly on Warm Paper. Grouping is done with space and hairlines, not enclosure.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep every color inside the token set; new styles reference tokens, never raw values.",
+      "Do keep Ink-Wash Blue under 10% of any screen, on links and small marks only (The One Voice Rule).",
+      "Do tint every neutral toward warmth (hue 70 to 85); print styles are the only place #000/#fff may appear.",
+      "Do cap reading text at 68ch and the page column at 60rem.",
+      "Do use 1px hairlines and whitespace for all separation; vary section padding (s6 to s16) for rhythm.",
+      "Do ease with cubic-bezier(0.22, 1, 0.36, 1) at 0.2 to 0.25s for state changes; guard every scroll-driven or view-transition effect behind prefers-reduced-motion: no-preference.",
+      "Do keep JavaScript minimal: only small is:inline enhancement scripts that pages work without; dist/ ships zero .js files (verify after builds).",
+      "Do keep content in markdown; adding a post or project must never require touching layout code."
+    ],
+    "donts": [
+      "Don't build \"default developer-portfolio templates\": gradient hero, emoji wave, three identical project cards with GitHub stars.",
+      "Don't reintroduce the heavy Swiss/brutalist treatment this site deliberately left: visible boxed frames, 2px rules, numbered ruled sections, uppercase tight-set poster display, invert-on-hover blocks.",
+      "Don't use glassmorphism, drop shadows, gradient text, or colored side-stripe borders (border-left thicker than 1px as an accent is prohibited outright).",
+      "Don't default to dark mode; the \"hacker aesthetic\" is an anti-reference. Light is the default, dark is a warm-tinted scheme the visitor or OS chooses.",
+      "Don't produce anything that looks like a Notion page or a resume-builder export.",
+      "Don't add cards, chips with backgrounds, modals, or web fonts. The audit test: if an element casts a shadow, sits in a box, or shows a second accent color, it does not belong on this site."
+    ]
+  }
+}
