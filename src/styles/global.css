@@ -247,6 +247,13 @@ a {
     grid-template-columns: minmax(0, var(--measure)) minmax(0, 1fr);
     column-gap: var(--s6);
   }
+
+  /* The contents nav precedes the prose in source (mobile flow wants it
+     first), so pin the prose to the reading column explicitly. */
+  .post-body > .prose {
+    grid-column: 1;
+    grid-row: 1;
+  }
 }
 
 .prose {

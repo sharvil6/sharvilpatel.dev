@@ -12,18 +12,31 @@ const show = items.length >= 2;
 
 {
   show && (
-    <nav class="toc no-print" aria-label="Contents" data-toc>
-      <p class="mono-label toc-title" aria-hidden="true">
-        Contents
-      </p>
-      <ol>
-        {items.map((h) => (
-          <li class={h.depth === 3 ? 'sub' : undefined}>
-            <a href={`#${h.slug}`}>{h.text}</a>
-          </li>
-        ))}
-      </ol>
-    </nav>
+    <>
+      <nav class="toc no-print" aria-label="Contents" data-toc>
+        <p class="mono-label toc-title" aria-hidden="true">
+          Contents
+        </p>
+        <ol>
+          {items.map((h) => (
+            <li class={h.depth === 3 ? 'sub' : undefined}>
+              <a href={`#${h.slug}`}>{h.text}</a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+
+      <details class="toc-sheet no-print">
+        <summary class="mono-label">Contents</summary>
+        <ol>
+          {items.map((h) => (
+            <li class={h.depth === 3 ? 'sub' : undefined}>
+              <a href={`#${h.slug}`}>{h.text}</a>
+            </li>
+          ))}
+        </ol>
+      </details>
+    </>
   )
 }
 
@@ -76,8 +89,24 @@ const show = items.length >= 2;
 }
 
 <style>
-  /* The margin nav only exists where the frame leaves room for it;
-     below that the anchor links add nothing a scroll can't do. */
+  /* ----- shared list bones (margin nav + mobile sheet) ----- */
+
+  ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li + li {
+    margin-block-start: 0.45em;
+  }
+
+  .sub {
+    padding-inline-start: var(--s2);
+  }
+
+  /* ----- margin nav: wide viewports only, where the frame leaves room ----- */
+
   .toc {
     display: none;
   }
@@ -85,6 +114,8 @@ const show = items.length >= 2;
   @media (min-width: 64rem) {
     .toc {
       display: block;
+      grid-column: 2;
+      grid-row: 1;
       position: sticky;
       top: var(--s6);
       align-self: start;
@@ -101,36 +132,22 @@ const show = items.length >= 2;
     margin-block-end: var(--s2);
   }
 
-  ol {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  li + li {
-    margin-block-start: 0.45em;
-  }
-
-  .sub {
-    padding-inline-start: var(--s2);
-  }
-
-  a {
+  .toc a {
     color: var(--muted);
     transition: color 0.2s var(--ease-out);
   }
 
-  a:hover {
+  .toc a:hover {
     color: var(--accent);
   }
 
-  a[aria-current] {
+  .toc a[aria-current] {
     color: var(--ink);
   }
 
   /* The mark's closing-period dot lands on the section being read.
      Always occupies space so activation never reflows the text. */
-  a::after {
+  .toc a::after {
     content: '';
     display: inline-block;
     width: 0.28em;
@@ -145,15 +162,67 @@ const show = items.length >= 2;
       transform 0.25s var(--ease-out);
   }
 
-  a[aria-current]::after {
+  .toc a[aria-current]::after {
     opacity: 1;
     transform: none;
   }
 
   /* Hover echoes the mark exactly: the dot appears and hops, even on
      the current entry (this rule wins by source order). */
-  a:hover::after {
+  .toc a:hover::after {
     opacity: 1;
     transform: translateY(-0.28em);
+  }
+
+  /* ----- mobile sheet: a collapsed jump menu at the top of the article ----- */
+
+  .toc-sheet {
+    border-block: var(--hairline);
+    padding-block: var(--s2);
+    margin-block-end: var(--s6);
+  }
+
+  @media (min-width: 64rem) {
+    .toc-sheet {
+      display: none;
+    }
+  }
+
+  summary {
+    list-style: none;
+    cursor: pointer;
+    width: fit-content;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* No disclosure triangle: the mark's dot is the affordance. It rests
+     like a closing period and hops when the sheet opens. */
+  summary::after {
+    content: '';
+    display: inline-block;
+    width: 0.28em;
+    height: 0.28em;
+    margin-inline-start: 0.14em;
+    border-radius: 50%;
+    background: var(--accent);
+    transition: transform 0.25s var(--ease-out);
+  }
+
+  .toc-sheet[open] summary::after {
+    transform: translateY(-0.28em);
+  }
+
+  .toc-sheet ol {
+    margin-block-start: var(--s2);
+    font-size: var(--text-sm);
+    line-height: 1.5;
+  }
+
+  .toc-sheet a {
+    color: var(--accent);
   }
 </style>

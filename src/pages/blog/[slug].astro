@@ -29,10 +29,10 @@ const { title, description, pubDate, tags } = post.data;
       <h1>{title}</h1>
     </header>
     <div class="post-body">
+      <Toc headings={headings} />
       <div class="prose">
         <Content />
       </div>
-      <Toc headings={headings} />
     </div>
   </article>
 </BaseLayout>
