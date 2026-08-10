@@ -1,6 +1,6 @@
 ---
-title: "Personal Website (this site)"
-summary: "Basic website with minimal Javascript that allows me to document my projects and resume"
+title: "Using Frontier Models to Build this Site"
+summary: "Experimenting with the frontier to see what long-reasoning models are capable of"
 date: 2026-06-15
 tech: ["Astro"]
 role: "Solo project"

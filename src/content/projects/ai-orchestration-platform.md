@@ -35,6 +35,18 @@ We grounded our approach in industry baselines. A few publications that recently
 - [Ramp](https://www.linkedin.com/pulse/we-built-every-employee-ramp-own-ai-coworker-sebastien-goddijn-sfupe/)
 - [A frontier without an ecosystem is not stable](https://x.com/i/article/2065582894790365184)
 
+## Tradeoffs
+The space around agent frameworks and wrappers is growing rapidly. I'll walk through a few of them one-by-one:
+
+### Wrapping Claude CLI
+Obviously this would have been more conventional and tied us to the absolute frontier in the space. However, there are probably two main contradictions that prevented us from this path. First, we strongly wanted to be vendor agnostic, as already described. This also did not provide the level of observability and control we considered absolutely essential.
+
+### LangGraph
+Using LangGraph is actually a decent idea. For us, the speed that LangGraph would have provided us just didn't feel THAT valuable in the age of Agentic coding. We found ourselves developing a complex, scalable system with tremendous pace due to the models and the platform itself. We also found that building the platform from scratch gave us such a first-class control over every single element of the system that as our needs shifted into hardware development or we wanted to hill climb after running an eval sweep, we were able to meet those changing needs easily.
+
+### Why Background Agents
+This is interesting - we actually started by building our web platform first. We continue to believe that the future of the majority of coding will move to a web platform like the one we developed instead of a traditional IDE. It's actually a tremendous unlock to work in this type of web-native, collaborative platform - but it does take some getting used to. So we ended up building an IDE later on since so many of our developers still wanted one... 
+
 ## Outcome
 - 10x - 15x developer velocity increase compared to team members using traditional agentic IDEs (Windsurf, Claude Code).
 - Deployed background agents across 100% of Dell's product repositories, bringing agents to left-of-code frontend scoping and right-of-code bugfixes, remediation

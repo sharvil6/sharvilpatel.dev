@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "spell": "cspell \"src/content/**/*.md\"",
+    "spell": "cspell \"src/content/**/*.md\" \"src/pages/**/*.astro\"",
     "spell:all": "cspell \"src/**/*.{md,astro,ts}\"",
     "build": "npm run spell && astro check && astro build",
     "preview": "astro preview",
